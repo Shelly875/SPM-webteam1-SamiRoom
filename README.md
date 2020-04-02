@@ -1,6 +1,6 @@
 # Team
 beni segal
-Liat Golber
+Liat Golber ♥
 # SamiRoom website
 Web development for Software Project Management course in our 3th year
 WebSite name - SamiRoom
