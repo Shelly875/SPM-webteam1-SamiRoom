@@ -1,8 +1,6 @@
 ![Image](https://github.com/Shelly875/SPM-webteam1-SamiRoom/blob/master/images/Logos/SamiRoom-Logo.png)
 
 
-<h1>Welcome to SamiRoom github page</h1>
-
 <h1>Authors</h1>
 
 <p>
@@ -25,13 +23,7 @@ In this github page we are going to demonstrate how to use this website, includi
 </p>
 
 <p>
-<br>
 <h1>Getting Started</h1>  
-</br>
-<h2>Prerequisites</h2>
-<br><h4>* Install coding environment - Visual Studio Code</h4></br>
-<br><h4>* Install NodeJs</h4></br>
-<br><h4>* Set up web-hosting -></h4></br> 
 
 </p>
 
