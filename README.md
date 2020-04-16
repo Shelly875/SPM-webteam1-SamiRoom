@@ -3,12 +3,10 @@
 
 <h1>Authors</h1>
 
-<p>
 * Shelly Miron
-* Liat Golber
+* Liat Gobler
 * Beni Segal
 * Leah Brodesky
-</p>
 
 <p>
 <h1>
