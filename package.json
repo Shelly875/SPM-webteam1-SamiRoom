@@ -1,0 +1,26 @@
+{
+  "name": "spm-webteam1-samiroom",
+  "version": "1.0.0",
+  "description": "this is an nmp package for our website",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs",
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Shelly875/SPM-webteam1-SamiRoom.git"
+  },
+  "keywords": [
+    "npm-web-team1"
+  ],
+  "author": "Shelly Miron",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Shelly875/SPM-webteam1-SamiRoom/issues"
+  },
+  "homepage": "https://github.com/Shelly875/SPM-webteam1-SamiRoom#readme"
+}
