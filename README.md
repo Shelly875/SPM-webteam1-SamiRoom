@@ -4,12 +4,10 @@
 <h1>Authors</h1>
 
 <p>
-<h4<>
-   <br>&nbsp;* Shelly Miron </br>
-   <br>&nbsp;* Liat Golber</br>
-   <br>&nbsp;* Beni Segal</br>
-   <br>&nbsp;* Leah Brodesky</br>
-</h4>
+* Shelly Miron
+* Liat Golber
+* Beni Segal
+* Leah Brodesky
 </p>
 
 <p>
@@ -23,7 +21,16 @@ In this github page we are going to demonstrate how to use this website, includi
 </p>
 
 <p>
-<h1>Getting Started</h1>  
+<br><h1>Getting Started</h1> </br> 
+
+* Install coding environment - Visual Studio/Visual Code/Notepad++ 
+* Install NodeJs
+* Install CI/CD tool & Init
+* npm (JavaScript packets) init: <code>npm init</code> , <code>npm install </code>
+* Our web hosting - https://infinityfree.net/
+* Our DB -> MySQL
+* Visit our website (Set up Domain Name) -> http://samiroom.epizy.com/
+
 
 </p>
 
