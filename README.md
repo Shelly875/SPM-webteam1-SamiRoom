@@ -24,7 +24,7 @@ In this github page we are going to demonstrate how to use this website, includi
 * Install coding environment - Visual Studio/Visual Code/Notepad++ 
 * Install NodeJs
 * Install CI/CD tool & Init
-* npm (JavaScript packets) init: <code>npm init</code> , <code>npm install </code>
+* npm (JavaScript packages) init: <code>npm init</code> , <code>npm install </code>
 * Our web hosting - https://infinityfree.net/
 * Our DB -> MySQL
 * Visit our website (Set up Domain Name) -> http://samiroom.epizy.com/
