@@ -1,5 +1,5 @@
 {
-  "name": "spm-webteam1-samiroom",
+  "name": "samiroom",
   "version": "1.0.0",
   "description": "this is an nmp package for our website",
   "main": "index.js",
