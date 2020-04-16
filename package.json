@@ -8,9 +8,10 @@
     "test": "tests"
   },
   "scripts": {
-    "dev": "nodemon src/index.js"
-    "test": "mocha test/*.spec.js --color"
+    "dev": "nodemon src/index.js",
+    "test": "mocha test/*.spec.js --color",
     "lint": "eslint src/*.js --color"
+	},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Shelly875/SPM-webteam1-SamiRoom.git"
