@@ -11,8 +11,8 @@
     "dev": "nodemon src/js/index.js",
     "test": "mocha test/*.spec.js --color",
     "lint": "eslint src/*.js --color",
-    "start": "node src/index.js"
-	},
+    "start": "node src/js.index.js"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Shelly875/SPM-webteam1-SamiRoom.git"
@@ -38,6 +38,7 @@
     "nodemon": "^2.0.3"
   },
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "express-load": "^1.1.16"
   }
 }
