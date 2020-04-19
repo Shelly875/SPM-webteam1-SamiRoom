@@ -23,7 +23,7 @@ In this github page we are going to demonstrate how to use this website, includi
 
 * Install coding environment - Visual Studio/Visual Code/Notepad++ 
 * Install NodeJs
-* Install CI/CD tool & Init
+* Install CI/CD tool & Init - CircleCI
 * npm (JavaScript packages) init: <code>npm init</code> , <code>npm install </code>
 * Our web hosting - https://infinityfree.net/
 * Our DB -> MySQL
