@@ -1,9 +1,15 @@
-const express = require('express');
-const app_port = process.env.PORT || 3000;
-const app = express()
-app.get('/', (req, res) => {
- res.send('Hello World')
-})
-app.listen(app_port)
-console.log(`app is running. port: ${app_port}`)
-console.log(`http://127.0.0.1:${app_port}/`)
+/* eslint-disable linebreak-style */
+const EXPRESS = require('express')();
+
+const APP_PORT = process.env.PORT || 3000;
+const APP = EXPRESS();
+
+APP.get('/', (req, res) => {
+  res.send('Hello World!');
+});
+
+APP.listen(APP_PORT);
+// eslint-disable-next-line no-console
+console.log(`app is running. port: ${APP_PORT}`);
+// eslint-disable-next-line no-console
+console.log((`http://127.0.0.1:${APP_PORT}/`));
