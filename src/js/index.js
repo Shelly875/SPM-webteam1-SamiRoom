@@ -1,7 +1,7 @@
 /* eslint-disable linebreak-style */
 /* global Console */
 
-const EXPRESS = require('express')();
+const EXPRESS = require('express');
 
 const APP_PORT = process.env.PORT || 3000;
 const APP = EXPRESS();
