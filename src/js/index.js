@@ -5,6 +5,8 @@ const EXPRESS = require('express');
 const APP_PORT = process.env.PORT || 3000;
 const APP = EXPRESS();
 
+APP.use(EXPRESS.static('html'));
+
 APP.get('/', (req, res) => {
   res.send('Hello World!');
 });
