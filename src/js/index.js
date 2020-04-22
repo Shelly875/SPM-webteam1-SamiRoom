@@ -5,10 +5,10 @@ const EXPRESS = require('express');
 const APP_PORT = process.env.PORT || 3000;
 const APP = EXPRESS();
 
-APP.use(EXPRESS.static('html'));
+APP.use(EXPRESS.static('src/html'));
 
 APP.get('/', (req, res) => {
-  res.send('Hello World!');
+  res.send('<h1>Hello World!</h1>');
 });
 
 APP.listen(APP_PORT);
