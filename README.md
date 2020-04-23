@@ -22,12 +22,12 @@ In this github page we are going to demonstrate how to use this website, includi
 <br><h1>Getting Started</h1> </br> 
 
 * Install coding environment - Visual Studio/Visual Code/Notepad++ 
-* Install NodeJs
+* Install NodeJs & run server: <code> npm run dev </code>
 * Install CI/CD tool & Init - CircleCI
 * npm (JavaScript packages) init: <code>npm init</code> , <code>npm install </code>
-* Our web hosting - https://infinityfree.net/
-* Our DB -> MySQL
-* Visit our website (Set up Domain Name) -> http://samiroom.epizy.com/
+* Our web host -> heroku: https://dashboard.heroku.com/
+* Our DB -> FireBase: <code>npm install -g firebase-tools</code>
+* Visit our website (Set up Domain Name) -> https://samiroom01.herokuapp.com/
 * Our Clubhouse -> https://app.clubhouse.io/webteam2/dashboard
 
 
