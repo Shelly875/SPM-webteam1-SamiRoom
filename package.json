@@ -6,7 +6,8 @@
   "directories": {
     "doc": "docs",
     "test": "tests",
-	"src": "src"
+	  "src": "src",
+	  "images": "images"
   },
   "scripts": {
     "dev": "nodemon src/js/index.js",
