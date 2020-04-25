@@ -5,7 +5,7 @@ const EXPRESS = require('express');
 const APP_PORT = process.env.PORT || 3000;
 const APP = EXPRESS();
 
-APP.use(EXPRESS.static('src/html'));
+APP.use(EXPRESS.static('./src/'));
 
 APP.get('/', (req, res) => {
   res.send('<h1>Hello World!</h1>');
