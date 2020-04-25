@@ -1,4 +1,4 @@
-![Image](https://github.com/Shelly875/SPM-webteam1-SamiRoom/blob/master/images/Logos/SamiRoom-Logo.png)
+![Image](https://github.com/Shelly875/SPM-webteam1-SamiRoom/blob/master/src/images/Logos/SamiRoom-Logo.png)
 
 
 <h1>Authors</h1>
