@@ -10,10 +10,10 @@
 	"src": "src"	
   },
   "scripts": {
-    "dev": "nodemon src/js/index.js",
-    "test": "mocha test/*.spec.js --color",
+    "dev": "nodemon SPM-webteam1-SamiRoom/src/js/index.js",
+    "test": "mocha SPM-webteam1-SamiRoom/test/*.spec.js --color",
     "lint": "eslint src/js/*.js --color",
-    "start": "node src/js/index.js"
+    "start": "node SPM-webteam1-SamiRoom/src/js/index.js"
   },
   "repository": {
     "type": "git",
