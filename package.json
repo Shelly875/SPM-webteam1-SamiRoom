@@ -6,8 +6,8 @@
   "directories": {
     "doc": "docs",
     "test": "tests",
-	"images": "images",
-	"src": "src"	
+    "images": "images",
+    "src": "src"
   },
   "scripts": {
     "dev": "nodemon src/js/index.js",
@@ -41,6 +41,8 @@
   },
   "dependencies": {
     "express": "^4.17.1",
-    "express-load": "^1.1.16"
+    "express-load": "^1.1.16",
+    "firebase": "^7.14.2",
+    "firebase-admin": "^8.11.0"
   }
 }

@@ -1,0 +1,99 @@
+<!-- This is an example of how to read and write from our FireBase DB-->
+
+<html>
+
+    <head>
+
+        <!-- YOU HAVE TO PUT THOSE LINK IN THE BEGINING OF THE HTML FILE, IN HEAD.  -->
+        <!-- The core Firebase JS SDK is always required and must be listed first -->
+        <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-firestore.js"></script>
+
+        <title> Example DB </title>
+
+    </head>
+
+
+    <body>
+
+        <!--------------------------------------- DB ---------------------------------------------------------->
+        
+        <!-- HERE IS THE INIT OF THE FIREBASE STORE (THE FIREBASE DB) & WRITE AND READ -->
+        <!-- THIS IS AN EXAMPLE SCRIPT -->
+        <script>
+             
+            // Write to DB 
+            function writeToDB()
+            {
+              // Initialize Cloud Firestore through Firebase
+              if (!firebase.apps.length) {
+    
+                firebase.initializeApp({
+                apiKey: 'AIzaSyAmHD6wCC5S0k4m_YRpByMBPxSKr8xMhec',
+                authDomain: 'samiroomdb.firebaseio.com',
+                projectId: 'samiroomdb'
+                });
+              }
+                // Example: Enter data to firestore database
+                var db = firebase.firestore();
+                let docRef = db.collection('Orders').doc('order03');
+    
+                // Get elements from html data above
+                var apartID = document.getElementById("apartID");
+                var isPaid = document.getElementById("isPaid");
+                var landlordID = document.getElementById("landlordID");
+    
+                let setCollection = docRef.set({
+                "apartID": apartID.value,
+                "isPaid": isPaid.value,
+                "landlordID": landlordID.value
+                });
+            }
+
+            // Read from DB
+            function readFromDB(){
+              
+              // Initialize Cloud Firestore through Firebase
+              if (!firebase.apps.length) {
+    
+                firebase.initializeApp({
+                apiKey: 'AIzaSyAmHD6wCC5S0k4m_YRpByMBPxSKr8xMhec',
+                authDomain: 'samiroomdb.firebaseio.com',
+                projectId: 'samiroomdb'
+                });
+              }
+          
+              // Example: get data from firestore database
+              var db = firebase.firestore();
+               
+              let orders = db.collection('Orders').doc('order01');
+              let getDoc = orders.get()
+             .then(doc => {
+               if (!doc.exists) {
+                 console.log('No such document!');
+               } else {
+                 document.write(doc.data().apartID);
+                 console.log(doc.data().apartID);
+               }
+             })
+             .catch(err => {
+               console.log('Error getting document', err);
+             });
+            }
+
+        </script>
+      
+          <!--------------------------------------- DB ---------------------------------------------------------->
+   
+          <h3>  Press the button to write this data  </h3>
+          <h4>Data:</h4>
+          <textarea id="apartID"></textarea>
+          <textarea id="isPaid"></textarea>
+          <textarea id="landlordID"></textarea>
+          <button id="demo" onclick="writeToDB()">Click me</button>
+
+          <h4> Read from DB something: </h4>
+          <div onload="readFromDB()"></div>
+
+    </body>
+</html>
