@@ -27,6 +27,7 @@ In this github page we are going to demonstrate how to use this website, includi
 * npm (JavaScript packages) init: <code>npm init</code> , <code>npm install </code>
 * Our web host -> heroku: https://dashboard.heroku.com/
 * Our DB -> FireBase: <code>npm install -g firebase-tools</code>
+* FireBase guide: https://firebase.google.com/docs/firestore/quickstart#web_1
 * Visit our website (Set up Domain Name) -> https://samiroom01.herokuapp.com/
 * Our Clubhouse -> https://app.clubhouse.io/webteam2/dashboard
 
