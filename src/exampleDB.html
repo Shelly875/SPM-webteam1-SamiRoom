@@ -65,20 +65,16 @@
           
               // Example: get data from firestore database
               var db = firebase.firestore();
-               
-              let orders = db.collection('Orders').doc('order01');
-              let getDoc = orders.get()
-             .then(doc => {
-               if (!doc.exists) {
-                 console.log('No such document!');
-               } else {
-                 document.write(doc.data().apartID);
-                 console.log(doc.data().apartID);
-               }
-             })
-             .catch(err => {
-               console.log('Error getting document', err);
-             });
+              var arr ={};
+              let orders = db.collection('Orders').doc('order01').get();
+              orders.then(doc => {
+                for(field in doc.data()){
+                    var key = field;
+                    arr[key] = doc.data()[key];
+                    document.getElementById("yes2").innerHTML = arr[key];
+                    document.getElementById("yes").innerHTML = doc.data()[key];
+                }
+              })
             }
 
         </script>
@@ -93,7 +89,10 @@
           <button id="demo" onclick="writeToDB()">Click me</button>
 
           <h4> Read from DB something: </h4>
-          <div onload="readFromDB()"></div>
+          <button onclick="readFromDB()">Click to read</button>
+          <h2>Fields in the collection Orders and line order01:</h2>
+          <h3 id="yes"></h3>
+          <h3 id="yes2"></h3>
 
     </body>
 </html>
