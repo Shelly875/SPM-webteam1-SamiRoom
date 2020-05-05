@@ -123,13 +123,8 @@
     <div class="site-section border-bottom">
     <div class="container">
       <div class="row">
-  
         <div class="col-md-12 col-lg-7 mb-5">
-  
-  
-  
-          <form action="#" class="contact-form">
-  
+          <form action="#" id="contactForm" class="contact-form">
             <div class="row form-group">
               <div class="col-md-12 mb-3 mb-md-0">
                 <label class="font-weight-bold" for="fullname">שם מלא</label>
@@ -160,11 +155,14 @@
   
             <div class="row form-group">
               <div class="col-md-12">
-                <input type="submit" value="שלח" class="btn btn-primary py-3 px-4">
+                <input type="submit" onclick="messageSent()" value="שלח" class="btn btn-primary py-3 px-4">
               </div>
             </div>
-  
-  
+            <script>
+              function messageSent(){
+                document.getElementById("contactForm").innerHTML="ההודעה נשלחה בהצלחה"
+              }
+            </script>
           </form>
         </div>
   
