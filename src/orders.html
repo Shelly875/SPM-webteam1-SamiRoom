@@ -3,6 +3,7 @@
 
     <!------------------------------------------------ Head start ---------------------------------------------------------------------->
     <head>
+            <!-- css -->
             <title>SamiRoom | ההזמנות שלי</title>
             <meta charset="utf-8">
             <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -28,6 +29,7 @@
 
             <!-- js-->
             <script language="javascript" src="js/db-func.js"></script>
+            <script language="javascript" src="js/orders.js"></script>
 
             <!--------------------------------- Icon -------------------------------------------------->
             <link rel="icon" href="images/Logos/house.png" type="image/icon type">
@@ -73,8 +75,6 @@
                                 document.getElementById("orders").innerHTML = "<a href='orders.html'>ההזמנות שלי</a>";
                                 document.getElementById("apartments").innerHTML = "<a href='orders.html'>הדירות שלי</a>";
                               }
-
-
                           </script>
                           <!--End-->
 
@@ -90,7 +90,6 @@
                           </script>
                           <!--End-->
                           <li id="home"><a href="index.html">ראשי</a></li>
-                        
                       </ul>
                       </nav>
                   </div>           
@@ -110,8 +109,11 @@
           <div class="row align-items-center justify-content-center">
             <div class="col-md-7 text-center" data-aos="fade-up" data-aos-delay="400">
               <h1 class="text-white">ההזמנות שלי</h1>
+              <h5 class="text-white" id="monthly-pay">תזרים חודשי</h5>
             </div>
+            
           </div>
+          
         </div>
       </div>
 
@@ -130,8 +132,8 @@
             <th style="text-align: center" scope="col">מספר תשלומים</th>
             <th style="text-align: center" scope="col">כמות בפועל</th>
             <th style="text-align: center" scope="col">שכר דירה</th>
-            <th style="text-align: center" scope="col">סטטוס</th>
             <th style="text-align: center" scope="col">תאריך כניסה</th>
+            <th style="text-align: center" scope="col">סטטוס</th>
             <th style="text-align: center" scope="col">פרטים נוספים</th>
             <th style="text-align: center" scope="col">
               <!-- Kebab menu -->
@@ -140,8 +142,9 @@
                     <i class='fa fa-ellipsis-v'></i>
                 </div>
                 <div class='dropdown-menu dropdown-menu-right' >
-                    <a class='dropdown-item' href='#'>מחק</a>
-                    <a class='dropdown-item' href='#'>שלח התראת תשלום</a>
+                    <a id = 'delete' class='dropdown-item' href='#'onclick="deleteOrder()">מחק</a>
+                    <a id = 'edit' class='dropdown-item' href='#' onclick="editOrder()">ערוך</a>
+                    <a id = 'payment-alert' class='dropdown-item' href='#' onclick="sendAlert()">שלח התראת תשלום</a>
                 </div>
               </div>
               <!-- Kebab menu  end-->
@@ -184,18 +187,18 @@
     
     <!-- Scripts -->
 
-      <script src="js/jquery-3.3.1.min.js"></script>
-      <script src="js/jquery-migrate-3.0.1.min.js"></script>
-      <script src="js/jquery-ui.js"></script>
-      <script src="js/popper.min.js"></script>
-      <script src="js/bootstrap.min.js"></script>
-      <script src="js/owl.carousel.min.js"></script>
-      <script src="js/jquery.stellar.min.js"></script>
-      <script src="js/jquery.countdown.min.js"></script>
-      <script src="js/jquery.magnific-popup.min.js"></script>
-      <script src="js/bootstrap-datepicker.min.js"></script>
-      <script src="js/aos.js"></script>
-      <script src="js/main.js"></script>
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/jquery-migrate-3.0.1.min.js"></script>
+    <script src="js/jquery-ui.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/jquery.stellar.min.js"></script>
+    <script src="js/jquery.countdown.min.js"></script>
+    <script src="js/jquery.magnific-popup.min.js"></script>
+    <script src="js/bootstrap-datepicker.min.js"></script>
+    <script src="js/aos.js"></script>
+    <script src="js/main.js"></script>
 
     <!-- Scripts end -->
 
