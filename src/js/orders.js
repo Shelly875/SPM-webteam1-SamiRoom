@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /* eslint-disable linebreak-style */
 /* eslint-disable no-undef */
 /* eslint-disable linebreak-style */
@@ -19,8 +20,20 @@ function editOrder() {
   if (document.querySelectorAll('input:checked').length < 1) {
     alert('יש לסמן הזמנה כדי לערוך!');
   } else {
-    status.innerHTML = `<input style="height:30px" class="form-control" placeholder=${status.textContent} maxlength="10" size="7"">`;
-    rent.innerHTML = `<input style="height:30px" class="form-control" placeholder=${rent.textContent} maxlength="10" size="7"">`;
+    status.innerHTML = '<select id="statusChoice"><option value="complete">שולם</option>'
+      + '<option value="incomplete">טרם שולם</option></select>';
+    rent.innerHTML = `<input type="text" style="height:30px" class="form-control" 
+      placeholder=${rent.textContent} maxlength="10" size="7"">`;
+    orderRow[0].innerHTML += '<td><input type="submit" value="שלח"></td>';
+
+    orderRow[0].addEventListener('keyup', (event) => {
+      if (event.keyCode === 13) {
+        if ($('#statusChoice option:selected').text() === 'שולם') {
+          status.innerHTML = `<td><text id="status" style="text-align: center;color:green;">
+            ${$('#statusChoice option:selected').text()}</text></td>`;
+        }
+      }
+    });
   }
 }
 
@@ -33,7 +46,6 @@ function deleteOrder() {
   // Run over all the checked checkboxs
   order.get().then((allOrders) => {
     allOrders.forEach((singleOrder) => {
-      // todo
     });
   });
 }

@@ -1,3 +1,4 @@
+/* eslint-disable prefer-destructuring */
 /* eslint-disable linebreak-style */
 /* eslint-disable no-new-object */
 /* eslint-disable no-restricted-syntax */
@@ -95,7 +96,7 @@ function readOrderFromDB(collection, tableID) {
               sumPay += a.data().pricePerMonth;
               document.getElementById('monthly-pay').innerHTML = ` ₪ ${sumPay} : תזרים חודשי`;
             } else {
-              document.getElementById(text).innerHTML += '<td  id="status" style="text-align: center;color:red;">טרם שולם</>';
+              document.getElementById(text).innerHTML += '<td  id="status" style="text-align: center;color:red;">טרם שולם</td>';
             }
             document.getElementById(text).innerHTML += `<td style="text-align: center">${'order details'}</td>`; // more details
           });
@@ -104,5 +105,67 @@ function readOrderFromDB(collection, tableID) {
 
       index += 1;
     });
+  });
+}
+
+function getAllpartments() {
+  // Veriable definiton
+  let count = 1;
+  const index = 0;
+  const allApartments = {};
+  let somePromise = new Promise(((resolve, reject) => {}));
+  const apartment = [];
+
+  somePromise = readFromDB('Apartments').get().then((allDocs) => {
+    allDocs.forEach((doc) => {
+      apartment[index] = doc.data().address;
+      apartment[index + 1] = doc.data().apartmentID;
+      apartment[index + 2] = doc.data().description;
+      apartment[index + 3] = doc.data().imagePath;
+      apartment[index + 4] = doc.data().isRent;
+      apartment[index + 5] = doc.data().numRoom;
+      apartment[index + 6] = doc.data().ownerID;
+      apartment[index + 7] = doc.data().squereMeter;
+      apartment[index + 8] = doc.data().pricePerMonth;
+      apartment[index + 9] = doc.data().city;
+      apartment[index + 10] = doc.data().startDate;
+      allApartments[`apart0${count}`] = apartment.slice();
+      count += 1;
+    });
+    return Promise.resolve(allApartments);
+  });
+
+  return somePromise;
+}
+
+
+function readApartmentDetails(apartNum) {
+  // Varible definiton
+  let allAparts = new Promise(((resolve, reject) => {}));
+  allAparts = getAllpartments();
+  allAparts.then((doc) => {
+    document.getElementById('description').innerHTML += doc[`apart0${apartNum}`][2];
+    document.getElementById('address').innerHTML += `${doc[`apart0${apartNum}`][0]}, ${doc[`apart0${apartNum}`][9]}`;
+    document.getElementById('roomsNum').innerHTML += doc[`apart0${apartNum}`][5];
+    document.getElementById('sizeApart').innerHTML += `${doc[`apart0${apartNum}`][7]} על ${doc[`apart0${apartNum}`][7]}`;
+    document.getElementById('rent').innerHTML += `${doc[`apart0${apartNum}`][8]}`;
+    document.getElementById('enterDate').innerHTML += `${doc[`apart0${apartNum}`][10].toDate().toDateString()}`;
+    if (doc[`apart0${apartNum}`][4] === true) {
+      document.getElementById('isRent').innerHTML = '<li id ="isRent" style="text-align: right;color:red;"'
+     + 'class="text-black">!סטטוס: הדירה הושכרה <strong></strong></li>';
+    } else {
+      document.getElementById('isRent').innerHTML = '<li id ="isRent" style="text-align: right;color:green;"'
+      + 'class="text-black">.סטטוס: הדירה זמינה<strong></strong></li>';
+    }
+  });
+}
+
+function takeApartImages(apartNum) {
+  // Variable definition
+  let allAparts = new Promise(((resolve, reject) => {}));
+  let apartImagePath;
+  allAparts = getAllpartments();
+  allAparts.then((doc) => {
+    apartImagePath = doc[`apart0${apartNum}`][3];
   });
 }
