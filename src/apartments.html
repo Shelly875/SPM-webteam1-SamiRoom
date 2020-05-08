@@ -27,78 +27,89 @@
   </head>
   <body>
 
-  
-    
-  
+  <!------------------------  site nevigations   ------------------------->
+
   <div class="site-wrap">
-
     <div class="site-navbar mt-4">
-        <div class="container py-1">
-          <div class="row align-items-center">
-            <div class="col-8 col-md-8 col-lg-4">
-              <h1 class="mb-0"><a href="index.html" class="text-white h2 mb-0"><strong>Apart<span class="text-primary">.</span></strong></a></h1>
-            </div>
-            <div class="col-4 col-md-4 col-lg-8">
-              <nav class="site-navigation text-right text-md-right" role="navigation">
+       <div class="container py-1">
+         <div class="row align-items-center">
+           <div class="col-8 col-md-8 col-lg-4">
+             <h1><a href='/'><strong>
+               <img src="images/Logos/logo.png" alt="Logo" class="img-fluid" width="250" lang="250">
+               <span class="text-primary"></span></strong></a></h1>
+           </div>
+           <div class="col-4 col-md-4 col-lg-8">
+             <nav class="site-navigation text-right text-md-right" role="navigation">
 
-                <div class="d-inline-block d-lg-none ml-md-0 mr-auto py-3"><a href="#" class="site-menu-toggle js-menu-toggle text-white"><span class="icon-menu h3"></span></a></div>
+               <div class="d-inline-block d-lg-none ml-md-0 mr-auto py-3"><a href="#" 
+                 class="site-menu-toggle js-menu-toggle text-white"><span class="icon-menu h3"></span></a>
+           </div>
+           <ul class="site-menu js-clone-nav d-none d-lg-block">
+                 <a id="contact" href='/contact'>צור קשר</a>
+                 <li id ="orders"></li>
+                 <li id ="apartments"></li>
+                 <li id ="login"><a href="/login">התחברות/הרשמה</a></li>
 
-                <ul class="site-menu js-clone-nav d-none d-lg-block">
-                  <li>
-                    <a href="index.html">Home</a>
-                  </li>
-                  <li><a href="about.html">About</a></li>
-                  <li class="has-children">
-                    <a href="apartments.html">Apartments</a>
-                    <ul class="dropdown arrow-top">
-                      <li><a href="#">Apartments</a></li>
-                      <li><a href="#">Rooms</a></li>
-                      <li><a href="#">Suites</a></li>
-                      <li class="has-children">
-                        <a href="#">Sub Menu</a>
-                        <ul class="dropdown">
-                          <li><a href="#">Menu One</a></li>
-                          <li><a href="#">Menu Two</a></li>
-                          <li><a href="#">Menu Three</a></li>
-                        </ul>
-                      </li>
-                    </ul>
-                  </li>
-                  <li class="active"><a href="news.html">News</a></li>
-                  <li><a href="contact.html">Contact</a></li>
-                </ul>
-              </nav>
-            </div>
-           
+                 
+                 <!--Check if the user is landlord-->
+                 <script>
 
-          </div>
-        </div>
-      </div>
-    </div>
+                     // Take data from database
+                     var a = 1;                            
+                     if(a == 1)
+                     {
+                       document.getElementById("login").innerHTML = "<a href='#'>היי, שם של משכיר</a>";
+                       document.getElementById("orders").innerHTML = "<a href='/myOrders'>ההזמנות שלי</a>";
+                       document.getElementById("apartments").innerHTML = "<a href='/myApartments'>הדירות שלי</a>";
+                     }
 
-    <div class="site-mobile-menu">
-      <div class="site-mobile-menu-header">
-        <div class="site-mobile-menu-close mt-3">
-          <span class="icon-close2 js-menu-toggle"></span>
-        </div>
-      </div>
-      <div class="site-mobile-menu-body"></div>
-    </div> <!-- .site-mobile-menu -->
-    
-    <div class="site-blocks-cover inner-page-cover overlay" style="background-image: url('images/hero_bg_1.jpg');"
-    data-aos="fade" data-stellar-background-ratio="0.5" data-aos="fade">
-    <div class="container">
-      <div class="row align-items-center justify-content-center">
-        <div class="col-md-7 text-center" data-aos="fade-up" data-aos-delay="400">
-          <h1 class="text-white">News &amp; Events</h1>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-        </div>
-      </div>
-    </div>
-  </div>
 
-  
-    
+                 </script>
+                 <!--End-->
+
+                 <!--Check if the user is student-->
+                 <script>
+                     // Take data from database
+                     var a = 1;                            
+                     if(a == 2)
+                     {
+                       document.getElementById("login").innerHTML = "<a href='#'>היי, שם של סטודנט</a>";
+                     }
+
+                 </script>
+                 <!--End-->
+                 <li id="home"><a href="/">ראשי</a></li>
+               
+               </ul>
+             </nav>
+           </div>
+         </div>
+       </div>
+     </div>
+   </div>
+<!------------------------  site nevigations end  ------------------------->
+         
+
+<!------------------------ Search bar ------------------------------------->
+   <div class="site-mobile-menu">
+     <div class="site-mobile-menu-header">
+       <div class="site-mobile-menu-close mt-3">
+         <span class="icon-close2 js-menu-toggle"></span>
+       </div>
+     </div>
+     <div class="site-mobile-menu-body"></div>
+   </div> 
+   
+   <div class="site-blocks-cover overlay" style="background-image: url('/images/Main/apartmentMainjpg.jpg');" 
+   data-aos="fade" data-stellar-background-ratio="0.5" data-aos="fade">
+       <div class="row align-items-center justify-content-center">
+         <div class="col-md-8 text-center" data-aos="fade-up" data-aos-delay="400">
+           <h1 class="mb-4">הדירות שלי</h1>               
+         </div>
+       </div>
+     </div>
+   </div>
+   
     <div class="site-section">
     <div class="container">
       <div class="row">

@@ -48,7 +48,7 @@
                 <div class="container py-1">
                   <div class="row align-items-center">
                     <div class="col-8 col-md-8 col-lg-4">
-                      <h1><a href="index.html"><strong>
+                      <h1><a href="/"><strong>
                         <img src="images/Logos/logo.png" alt="Logo" class="img-fluid" width="250" lang="250">
                         <span class="text-primary"></span></strong></a></h1>
                     </div>
@@ -59,11 +59,10 @@
                           class="site-menu-toggle js-menu-toggle text-white"><span class="icon-menu h3"></span></a>
                     </div>
                     <ul class="site-menu js-clone-nav d-none d-lg-block">
-                          <a id="contact" href="contact.html">צור קשר</a>
-                          <li id="about"><a href="about.html">אודות</a></li>
+                          <a id="contact" href="/contact">צור קשר</a>
                           <li id ="orders"></li>
                           <li id ="apartments"></li>
-                          <li id ="login"><a href="apartments.html">התחברות/הרשמה</a></li>
+                          <li id ="login"><a href="/login">התחברות/הרשמה</a></li>
                           <!--Check if the user is landlord-->
                           <script>
 
@@ -71,9 +70,9 @@
                               var a = 1;                            
                               if(a == 1)
                               {
-                                document.getElementById("login").innerHTML = "<a href='orders.html'>היי, שם של משכיר</a>";
-                                document.getElementById("orders").innerHTML = "<a href='orders.html'>ההזמנות שלי</a>";
-                                document.getElementById("apartments").innerHTML = "<a href='orders.html'>הדירות שלי</a>";
+                                document.getElementById("login").innerHTML = "<a href='#'>היי, שם של משכיר</a>";
+                                document.getElementById("orders").innerHTML = "<a href='/myOrders'>ההזמנות שלי</a>";
+                                document.getElementById("apartments").innerHTML = "<a href='/myApartments'>הדירות שלי</a>";
                               }
                           </script>
                           <!--End-->
@@ -84,12 +83,12 @@
                               var a = 1;                            
                               if(a == 2)
                               {
-                                document.getElementById("login").innerHTML = "<a href='orders.html'>היי, שם של סטודנט</a>";
+                                document.getElementById("login").innerHTML = "<a href='#'>היי, שם של סטודנט</a>";
                               }
 
                           </script>
                           <!--End-->
-                          <li id="home"><a href="index.html">ראשי</a></li>
+                          <li id="home"><a href="/">ראשי</a></li>
                       </ul>
                       </nav>
                   </div>           
