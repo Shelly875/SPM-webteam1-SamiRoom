@@ -19,6 +19,9 @@ APP.use(EXPRESS.static(__dirname));
 console.log('starting...');
 // DB.takeApartImages(1);
 
+// set the view engine to ejs
+APP.set('view engine', 'ejs');
+
 // test student class
 const s = new ST();
 let s1 = new Promise(((resolve, reject) => {}));
@@ -43,44 +46,38 @@ let apart1 = new Promise(((resolve, reject) => {}));
 apart1 = apart.readApartFromDB('apart01');
 apart.printApart(apart1);
 
-router.get('/home', (req, res) => {
-  res.sendFile(`${PATH}/index.html`);
+APP.get('/', (req, res) => {
+  res.render(`${PATH}/index`);
 });
 
-router.get('/contact', (req, res) => {
-  res.sendFile(`${PATH}/contact.html`);
+APP.get('/contact', (req, res) => {
+  res.render(`${PATH}/contact`);
 });
 
-router.get('/myOrders', (req, res) => {
-  res.sendFile(`${PATH}/orders.html`);
+APP.get('/myOrders', (req, res) => {
+  res.render(`${PATH}/orders`);
 });
 
-router.get('/login', (req, res) => {
-  res.sendFile(`${PATH}/login.html`);
+APP.get('/login', (req, res) => {
+  res.render(`${PATH}/login`);
 });
 
-router.get('/registertion', (req, res) => {
-  res.sendFile(`${PATH}/registertion.html`);
+APP.get('/registertion', (req, res) => {
+  res.render(`${PATH}/registertion`);
 });
 
-router.get('/myApartments', (req, res) => {
-  res.sendFile(`${PATH}/apartments.html`);
+APP.get('/myApartments', (req, res) => {
+  res.render(`${PATH}/apartments`);
 });
 
-router.get('/details', (req, res) => {
-  res.sendFile(`${PATH}/apartment-detail.html`);
-  // DB.readApartmentDetails('1');
+APP.get('/details', (req, res) => {
+  res.render(`${PATH}/apartment-detail`);
 });
-
-APP.use('/', router);
 
 APP.use('*', (req, res) => {
-  res.sendFile(`${PATH}/404.html`);
+  res.render(`${PATH}/404`);
 });
 
-APP.get('/', (req, res) => {
-  res.send('<h1>Hello World!</h1>');
-});
 
 APP.listen(APP_PORT);
 // eslint-disable-next-line no-console
