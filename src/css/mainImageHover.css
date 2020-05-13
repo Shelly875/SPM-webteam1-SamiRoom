@@ -1,0 +1,29 @@
+.img_wrap {
+  position: relative;
+  display: inline-block;
+}
+.img_wrap input[type="image"]{
+  opacity: 1;
+  display: block;
+  transition: opacity .3s cubic-bezier(.4,0,.2,1)
+}
+.img_wrap:hover input[type="image"] {
+  opacity: .3;
+}
+.img_wrap .imgText {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  left: 0;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  opacity: 0;
+  transition: opacity .3s cubic-bezier(.4,0,.2,1)
+}
+.img_wrap:hover .imgText {
+  opacity: 1;
+  pointer-events: none;
+}

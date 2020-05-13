@@ -33,10 +33,10 @@ const landlord = new LAND();
 const apart = new APART();
 
 APP.get('/', (req, res) => {
-  let newApart = new Promise(((resolve, reject) => {}));
-  
-  }
-  res.render(`${PATH}/index`);
+  // All apartments in the main page
+  apart.getAllApart().then((apartments) => {
+    res.render(`${PATH}/`, { apartments });
+  });
 });
 
 APP.get('/contact', (req, res) => {
@@ -57,6 +57,10 @@ APP.get('/registertion', (req, res) => {
 
 APP.get('/myApartments', (req, res, idApart) => {
   res.render(`${PATH}/apartments`);
+});
+
+APP.get('/payment', (req, res, idApart) => {
+  res.render(`${PATH}/payment`);
 });
 
 APP.get('/details', (req, res, id) => {
