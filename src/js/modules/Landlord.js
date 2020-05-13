@@ -49,7 +49,7 @@ module.exports = class Landlord {
     return object;
   }
 
-  writeStudentToDB(id, isPrivate, firstname, lastname, phone, email, password, companyName) {
+  writeStudentToDB() {
     // Initialize Cloud Firestore through Firebase
     if (DB_REQ.apps.length === 0) {
       DB_REQ.initializeApp({
@@ -66,14 +66,14 @@ module.exports = class Landlord {
       const n = doc.size;
       // add new row
       db.collection('Landlord').doc(`landlord0${n + 1}`).set({
-        ID: id,
-        isPrivate,
-        email,
-        firstname,
-        lastname,
-        password,
-        phone,
-        companyName,
+        ID: this.id,
+        isPrivate: this.isPrivate,
+        email: this.email,
+        firstname: this.firtsname,
+        lastname: this.lastname,
+        password: this.password,
+        phone: this.phone,
+        companyName: this.companyName,
       });
     });
   }

@@ -5,48 +5,37 @@
 
 const EXPRESS = require('express');
 const DB = require('./js/db-func');
-const ST = require('./js/modules/Student');
+const STUDENT = require('./js/modules/Student');
 const ORDER = require('./js/modules/Order');
 const LAND = require('./js/modules/Landlord');
 const APART = require('./js/modules/Apartment');
 
 const APP_PORT = process.env.PORT || 3000;
 const APP = EXPRESS();
-const router = EXPRESS.Router();
 const PATH = __dirname;
 
 APP.use(EXPRESS.static(__dirname));
 console.log('starting...');
-// DB.takeApartImages(1);
 
 // set the view engine to ejs
 APP.set('view engine', 'ejs');
 
-// test student class
-const s = new ST();
-let s1 = new Promise(((resolve, reject) => {}));
-s1 = s.readStudentFromDB('student01');
-s.printStudent(s1);
+// declare student class
+const student = new STUDENT();
 
-// test order class
+// declare order class
 const order = new ORDER();
-let order1 = new Promise(((resolve, reject) => {}));
-order1 = order.readOrderFromDB('order01');
-order.printOrder(order1);
 
-// test landlord class
+// declare landlord class
 const landlord = new LAND();
-let landlord1 = new Promise(((resolve, reject) => {}));
-landlord1 = landlord.readLandFromDB('landlord01');
-landlord.printLandlord(landlord1);
 
-// test apartment class
+// declare apartment class
 const apart = new APART();
-let apart1 = new Promise(((resolve, reject) => {}));
-apart1 = apart.readApartFromDB('apart01');
-apart.printApart(apart1);
 
 APP.get('/', (req, res) => {
+  let newApart = new Promise(((resolve, reject) => {}));
+  
+  }
   res.render(`${PATH}/index`);
 });
 
@@ -66,18 +55,45 @@ APP.get('/registertion', (req, res) => {
   res.render(`${PATH}/registertion`);
 });
 
-APP.get('/myApartments', (req, res) => {
+APP.get('/myApartments', (req, res, idApart) => {
   res.render(`${PATH}/apartments`);
 });
 
-APP.get('/details', (req, res) => {
-  res.render(`${PATH}/apartment-detail`);
+APP.get('/details', (req, res, id) => {
+  let apart2 = new Promise(((resolve, reject) => {}));
+  let apartmentID; let address; let squereMeter;
+  let pricePerMonth; let startDate; let isRent; let numRoom; let description;
+  let imagePath; let ownerID; let city;
+  // we need to get this from the previuos screen
+  apart2 = apart.searchApartById(9000000);
+  apart2.then((doc) => {
+    numRoom = doc.numRoom;
+    apartmentID = doc.apartmentID;
+    address = doc.address;
+    squereMeter = doc.squereMeter;
+    startDate = doc.startDate;
+    description = doc.description;
+    pricePerMonth = doc.pricePerMonth;
+    city = doc.city;
+    imagePath = doc.imagePath;
+    res.render(`${PATH}/apartment-detail`, {
+      apartmentID,
+      address,
+      numRoom,
+      squereMeter,
+      startDate,
+      isRent,
+      description,
+      city,
+      pricePerMonth,
+      imagePath,
+    });
+  });
 });
 
 APP.use('*', (req, res) => {
   res.render(`${PATH}/404`);
 });
-
 
 APP.listen(APP_PORT);
 // eslint-disable-next-line no-console

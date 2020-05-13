@@ -116,19 +116,30 @@
 
   <div class="container">
       <div class="featured-property-half d-flex">
-        <div class="image" style="background-image: url('images/Titles/students_apart1.jpg')"></div>
+        <div class="image" style="background-image: url('/images/Apartments/9000000/apart1.jpg')"></div>
         <div class="text">
-          <h2 style="text-align:right;"> # פרטי דירה מספר</h2>
+          <h2 style="text-align:right;">
+             <%=address %>, <%=city %>
+             <input type='text' id='rs'/>
+             >
+           </h2>
           <br></br>
           <p style="text-align:right;" id = "description" class= "mb-5"></p>
           <ul class="property-list-details mb-5">
-            <li style="text-align:right;" class="text-black" id="address">כתובת הדירה: <strong class="text-black"></strong></li>
-            <li style="text-align:right;" class="text-black" id="roomsNum">מספר חדרים: <strong class="text-black"></strong></li>
-            <li style="text-align:right;" class="text-black" id="sizeApart">גודל דירה: <strong class="text-black"></strong></li>
-            <li id ="rent" style="text-align:right;" class="text-black"> ₪ מחיר: <strong class="text-black"></strong></li>
-            <li id ="enterDate" style="text-align:right;" class="text-black">:תאריך כניסה<strong></strong></li>
+            <li style="text-align:right;" class="text-black" id="roomsNum">מספר חדרים : <%=numRoom %>
+               <strong class="text-black"></strong></li>
+            <li style="text-align:right;" class="text-black" id="sizeApart"><%=squereMeter%> X <%=squereMeter%> : גודל דירה 
+               <strong class="text-black"></strong></li>
+            <li id ="rent" style="text-align:right;" class="text-black"> ₪  <%=pricePerMonth%>  : מחיר 
+              <strong class="text-black"></strong></li>
+            <li id ="enterDate" style="text-align:right;" class="text-black"> <%=startDate.toDate().toDateString() %>  :תאריך כניסה
+              <strong></strong></li>
             <li id ="enterDate" style="text-align:right;" class="text-black">:בעל דירה ופרטי קשר<strong></strong></li>
-            <li id ="isRent" style="text-align:right;" class="text-black">:סטטוס<strong></strong></li>
+            <% if(isRent == true){ %>
+              <li id ="isRent" style="text-align:right;color:red;"> !סטטוס: הדירה הושכרה<strong></strong></li>
+            <% } else{ %>  
+              <li id ="isRent" style="text-align:right;color:green;"><b> !סטטוס: הדירה זמינה</b><strong></strong></li>
+           <% } %>
           </ul>
           <p style="text-align:right;"><a href="contact.html"  class="btn btn-primary px-4 py-3">להשכרה</a></p>
         </div>

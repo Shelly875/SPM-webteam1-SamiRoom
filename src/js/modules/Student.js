@@ -54,8 +54,7 @@ module.exports = class Student {
     return object;
   }
 
-  writeStudentToDB(id, IsApproved, address, city, firstname, lastname, phone,
-    email, password, studentCardNum, startDate) {
+  writeStudentToDB() {
     // Initialize Cloud Firestore through Firebase
     if (DB_REQ.apps.length === 0) {
       DB_REQ.initializeApp({
@@ -72,17 +71,17 @@ module.exports = class Student {
       const n = doc.size;
       // add new row
       db.collection('Students').doc(`student0${n + 1}`).set({
-        ID: id,
-        IsApproved,
-        address,
-        city,
-        email,
-        firstname,
-        lastname,
-        password,
-        phone,
-        startDate,
-        studentCardNum,
+        ID: this.id,
+        IsApproved: this.IsApproved,
+        address: this.address,
+        city: this.city,
+        email: this.email,
+        firstname: this.firtsname,
+        lastname: this.lastname,
+        password: this.password,
+        phone: this.phone,
+        startDate: this.startDate,
+        studentCardNum: this.studentCardNum,
       });
     });
   }

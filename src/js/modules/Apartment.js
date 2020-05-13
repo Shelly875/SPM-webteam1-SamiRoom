@@ -52,12 +52,10 @@ module.exports = class Apartment {
       // return promise with the newStudent class
       return Promise.resolve(newApart);
     });
-
     return object;
   }
 
-  writeApartToDB(apartmentID, address, city, description, imagePath,
-    isRent, numRoom, ownerID, pricePerMonth, squereMeter = 0, startDate = null) {
+  writeApartToDB() {
     // Initialize Cloud Firestore through Firebase
     if (DB_REQ.apps.length === 0) {
       DB_REQ.initializeApp({
@@ -74,20 +72,41 @@ module.exports = class Apartment {
       const n = doc.size;
       // add new row
       db.collection('Apartments').doc(`apart0${n + 1}`).set({
-        apartmentID,
-        address,
-        city,
-        landlordID,
-        description,
-        imagePath,
-        isRent,
-        numRoom,
-        ownerID,
-        pricePerMonth,
-        squereMeter,
-        startDate,
+        apartmentID: this.apartmentID,
+        address: this.address,
+        city: this.city,
+        landlordID: this.landlordID,
+        description: this.description,
+        imagePath: this.imagePath,
+        isRent: this.isRent,
+        numRoom: this.numRoom,
+        ownerID: this.pricePerMonth,
+        pricePerMonth: this.pricePerMonth,
+        squereMeter: this.squereMeter,
+        startDate: this.startDate,
       });
     });
+  }
+
+  searchApartById(apartID) {
+    // Initialize Cloud Firestore through Firebase
+    if (DB_REQ.apps.length === 0) {
+      DB_REQ.initializeApp({
+        apiKey: 'AIzaSyAmHD6wCC5S0k4m_YRpByMBPxSKr8xMhec',
+        authDomain: 'samiroomdb.firebaseio.com',
+        projectId: 'samiroomdb',
+      });
+    }
+
+    // Example: get data from firestore database
+    const db = DB_REQ.firestore();
+    let somePromise = new Promise(((resolve, reject) => {}));
+    let somePromise2 = new Promise(((resolve, reject) => {}));
+    somePromise2 = db.collection('Apartments').where('apartmentID', '==', apartID).get().then((docs) => {
+      docs.forEach((doc) => { somePromise = this.readApartFromDB(doc.id); });
+      return somePromise;
+    });
+    return somePromise2;
   }
 
   printApart(apart) {
