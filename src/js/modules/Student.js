@@ -54,6 +54,27 @@ module.exports = class Student {
     return object;
   }
 
+  searchStudentByID(studentID) {
+    // Initialize Cloud Firestore through Firebase
+    if (DB_REQ.apps.length === 0) {
+      DB_REQ.initializeApp({
+        apiKey: 'AIzaSyAmHD6wCC5S0k4m_YRpByMBPxSKr8xMhec',
+        authDomain: 'samiroomdb.firebaseio.com',
+        projectId: 'samiroomdb',
+      });
+    }
+
+    // Example: get data from firestore database
+    const db = DB_REQ.firestore();
+    let somePromise = new Promise(((resolve, reject) => {}));
+    let somePromise2 = new Promise(((resolve, reject) => {}));
+    somePromise2 = db.collection('Students').where('ID', '==', studentID).get().then((docs) => {
+      docs.forEach((doc) => { somePromise = this.readApartFromDB(doc.id); });
+      return somePromise;
+    });
+    return somePromise2;
+  }
+
   writeStudentToDB() {
     // Initialize Cloud Firestore through Firebase
     if (DB_REQ.apps.length === 0) {
