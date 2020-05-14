@@ -119,21 +119,22 @@
       <!-------------------------------- Your code ---------------------------------------------->
       <!-- taken and changed from :https://codepen.io/colorlib/pen/rxddKy-->
           <div class="form">
-            <form class="register-form"  action="/" method="GET">
+            <form class="register-form"   id="register-form" action="/" method="GET">
               <input type="text" id="fname" name="fname" placeholder="first name"/>
               <input type="text"  id="lname" name="lname" placeholder="last name"/>
-              <input type="text" id="id" name="id" placeholder="id"/>
+              <input type="text" id="regid" name="regid" placeholder="id"/>
               <input type="tel" id="phone" name="phone" pattern="[0-9]{2-3}-[0-9]{7}" placeholder="phone number"/>
-              <input type="password" id="pass" name="pass" placeholder="password"/>
-              <input type="text" id="address" name="adress" placeholder="address"/>
-              <label for="female">birthday</label>
+              <input type="password" id="regpass" name="regpass" placeholder="password"/>
+              <input type="text" id="city" name="city" placeholder="city"/>
+              <input type="text" id="address" name="address" placeholder="address"/>
+              <label for="birthday">birthday</label>
               <input type="date" id="birthday" name="birthday" placeholder="birthday" class="textbox-n"/>
               <input type="email" id="email" name="email" placeholder="email"/>
               <label for="male">
-              <input type="radio" id="male" name="gender" value="male" checked>
+              <input type="radio" id="gender" name="gender" value="male" checked>
               male
               </label>
-              <input type="radio" id="female" name="gender" value="female">
+              <input type="radio" id="gender" name="gender" value="female">
               <label for="female">Female</label>
               
               <div class="userType" >
@@ -143,22 +144,20 @@
                 </select>
               </div>
               <div class="form-group" id="studentdiv">
-                <label for="female">start date at sami shamoon college</label>
-                <input type="date" id="startDate" name="startDate" placeholder="start date at sami shamoon college" class="textbox-n"/>
-                <label for="idPic">upload a student id picture:</label>
-                <input type="file" id="idPic" name="idPic">
-                <input type="text"  id="studyField" name="studyField" placeholder="field of study"/>
+                <input type="text" id="regid" name="regid" placeholder="student id"/>
               </div>
-              
+             
 
               <button>create</button>
               <p class="message">Already registered? <a href="#">Sign In</a></p>
+              <div id="reg-error"></div>
             </form>
-            <form class="login-form"  onclick="regValidiation()">
-              <input type="text" placeholder="ID"/>
-              <input type="password" placeholder="password"/>
-              <button>login</button>
+            <form class="login-form" id="login-form"    action="/" method="GET" >
+              <input type="text" id="userid"  name="id" placeholder="ID"/>
+              <input type="password" id="pass"  placeholder="password"/>
+              <button type='submit'>login</button>
               <p class="message">Not registered? <a href="#">Create an account</a></p>
+              <div id="login-error"></div>
             </form>
           </div>
  
@@ -226,6 +225,7 @@
       <script src="js/circleaudioplayer.js"></script>
       <script src="js/main.js"></script>
       <script src="js/regLogClick.js"></script>
+      <script src="js\LoginValidation.js"></script>
 
     <!-- Scripts end -->
 

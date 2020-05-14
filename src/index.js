@@ -54,13 +54,7 @@ APP.get('/myOrders', (req, res) => {
 
 APP.get('/login', (req, res) => {
   res.render(`${PATH}/login`);
-  const x = 0;
-  if (x === 2) {
-    alert('logged');
-    res.render(`${PATH}/`);
-  } else {
-    alert('failed');
-  }
+ 
 });
 
 APP.get('/registertion', (req, res) => {

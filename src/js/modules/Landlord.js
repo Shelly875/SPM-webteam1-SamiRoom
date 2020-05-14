@@ -50,7 +50,7 @@ module.exports = class Landlord {
     return object;
   }
 
-  writeStudentToDB() {
+  writeLandlordToDB() {
     // Initialize Cloud Firestore through Firebase
     if (DB_REQ.apps.length === 0) {
       DB_REQ.initializeApp({

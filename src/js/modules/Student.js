@@ -19,7 +19,7 @@ module.exports = class Student {
     this.address = address;
     this.IsApproved = IsApproved;
     this.studentCardNum = studentCardNum;
-    this.studentCardNum = password;
+    this.password = password;
   }
 
   readStudentFromDB(studentDocNum) {

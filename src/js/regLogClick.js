@@ -25,50 +25,15 @@ $('.message a').click(() => {
 $('#userType').change(function () {
   if ($(this).val() == 'student') {
     $('#studentdiv').show();
-    $('#startDate').attr('required', '');
-    $('#startDate').attr('data-error', 'This field is required.');
+ 
     $('#idPic').attr('required', '');
     $('#idPic').attr('data-error', 'This field is required.');
-    $('#startDate').attr('required', '');
-    $('#startDate').attr('data-error', 'This field is required.');
+  
   } else {
     $('#studentdiv').hide();
-    $('#startDate').removeAttr('required');
-    $('#startDate').removeAttr('data-error');
+  
     $('#idPic').removeAttr('required');
     $('#idPic').removeAttr('data-error');
-    $('#studyField').removeAttr('required');
-    $('#studyField').removeAttr('data-error');
-  }
-});
-$('#userType').change(function () {
-  if ($(this).val() == 'student') {
-    $('#studentdiv').show();
-    $('#startDate').attr('required', '');
-    $('#startDate').attr('data-error', 'This field is required.');
-    $('#idPic').attr('required', '');
-    $('#idPic').attr('data-error', 'This field is required.');
-    $('#startDate').attr('required', '');
-    $('#startDate').attr('data-error', 'This field is required.');
-  } else {
-    $('#studentdiv').hide();
-    $('#startDate').removeAttr('required');
-    $('#startDate').removeAttr('data-error');
-    $('#idPic').removeAttr('required');
-    $('#idPic').removeAttr('data-error');
-    $('#studyField').removeAttr('required');
-    $('#studyField').removeAttr('data-error');
-  }
-});
-$('#userType').trigger('change');
 
-function loginValidiation() {
-  let x;
-  // x = document.getElementById('login-form').innerHTML;
-  alert('logged');
-}
-function regValidiation() {
-  // let x;
-  // x = document.getElementById('login-form').innerHTML;
-  alert('reged');
-}
+  }
+});
