@@ -84,13 +84,12 @@
               <li id ="isRent" style="text-align:right;color:green;"><b> !סטטוס: הדירה זמינה</b><strong></strong></li>
            <% } %>
           </ul>
-          <p style="text-align:right;"><a href="/payment"  class="btn btn-primary px-4 py-3">להשכרה</a></p>
-          <script>
-            var a = 2;
-            if(a ===2){
-              <p style="text-align:right;"><a href="/newApart" class="btn btn-primary px-4 py-3">עריכה</a></p>
-            }
-          </script>
+          <p style="text-align:right;"><a href="/payment"  class="btn btn-primary px-4 py-3">להשכרה</a>
+          
+            <% var a = 2;
+            if(a ===2) { %>
+              <a href="/newApart" class="btn btn-primary px-4 py-3" style="text-align:right;">עריכה</a></p>
+            <% } %>
         </div>
       </div>
     </div>

@@ -64,7 +64,7 @@
       <!-------------------------------- Your code ---------------------------------------------->
       <!-- taken and changed from :https://codepen.io/colorlib/pen/rxddKy-->
           <div class="form">
-            <form class="register-form"   id="register-form" action="/" method="GET">
+            <form class="register-form" id="register-form">
               <input type="text" id="fname" name="fname" placeholder="first name"/>
               <input type="text"  id="lname" name="lname" placeholder="last name"/>
               <input type="text" id="regid" name="regid" placeholder="id"/>
@@ -91,22 +91,17 @@
               <div class="form-group" id="studentdiv">
                 <input type="text" id="regid" name="regid" placeholder="student id"/>
               </div>
-<<<<<<< HEAD
-             
-
-=======
-              
->>>>>>> 89471b84d982dfa61a3249fcbd2183581634e5d7
               <button>create</button>
               <p class="message">Already registered? <a href="#">Sign In</a></p>
               <div id="reg-error"></div>
             </form>
-            <form class="login-form" id="login-form"    action="/" method="GET" >
-              <input type="text" id="userid"  name="id" placeholder="ID"/>
-              <input type="password" id="pass"  placeholder="password"/>
-              <button type='submit'>login</button>
+            <form class="login-form" id="login-form" action="http://localhost:3000/login" method="post">
+              <input type="text" id="userid" name="user[id]" placeholder="ID"/>
+              <input type="password" id="password" name="user[pass]" placeholder="password"/>
+              <button type="submit">login</button>
               <p class="message">Not registered? <a href="#">Create an account</a></p>
-              <div id="login-error"></div>
+              <div id="login-error">
+              </div>
             </form>
           </div>
  
@@ -146,7 +141,6 @@
         <div class="row pt-5 mt-5 text-center">
             <div class="col-md-12">
               <p>
-                 
                  Copyright &copy;<script data-cfasync="false" 
                  src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
                  <script>document.write(new Date().getFullYear());</script> All rights reserved | <i class="icon-heart text-danger" 

@@ -37,10 +37,6 @@ const landlord = new LAND();
 // declare apartment class
 const apart = new APART();
 
-landlord.confirmLandlord(316243567, 'Wedg153k*').then((result) => {
-  console.log(result);
-});
-
 APP.get('/', (req, res) => {
   // All apartments in the main page
   apart.getAllApart().then((apartments) => {
@@ -49,6 +45,10 @@ APP.get('/', (req, res) => {
 });
 
 APP.post('/', (req, res) => {
+  // All apartments in the main page
+  apart.getAllApart().then((apartments) => {
+    res.render(`${PATH}/`, { apartments });
+  });
 });
 
 APP.get('/contact', (req, res) => {
@@ -60,8 +60,30 @@ APP.get('/myOrders', (req, res) => {
 });
 
 APP.post('/login', (req, res) => {
-  res.render(`${PATH}/login`);
-  console.log(req.body.user.id);
+  const userID = req.body.user.id;
+  const userPass = req.body.user.pass;
+  const isStudent = true;
+  student.confirmStudent(Number(userID), userPass).then((result) => {
+    if (result === false) {
+      res.render(`${PATH}/login`, { result });
+    } else {
+      student.searchStudentByID(Number(userID)).then((stud) => {
+        const studentName = stud.firstname;
+        res.render(`${PATH}/`, { userID }, { isStudent }, { studentName });
+      });
+    }
+  });
+  landlord.confirmLandlord(Number(userID), userPass).then((result) => {
+    if (result === false) {
+      console.log(1);
+      res.render(`${PATH}/login`, { result });
+    } else {
+      landlord.searchLandlordByID(Number(userID)).then((land) => {
+        const landlordName = land.firstname;
+        res.render(`${PATH}/`, { userID }, { isStudent }, { landlordName });
+      });
+    }
+  });
 });
 
 APP.get('/login', (req, res) => {
