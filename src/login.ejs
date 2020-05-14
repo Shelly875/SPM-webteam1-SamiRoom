@@ -19,6 +19,7 @@
             <link rel="stylesheet" href="css/fl-bigmug-line.css">
             <link rel="stylesheet" href="css/aos.css">
             <link rel="stylesheet" href="css/style.css">
+            <link rel="stylesheet" href="css/login.css">
 
             <!-- The core Firebase JS SDK is always required and must be listed first -->
             <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-app.js"></script>
@@ -65,7 +66,7 @@
                               var a = 1;                            
                               if(a == 1)
                               {
-                                document.getElementById("login").innerHTML = "<a href='#'>היי, שם של משכיר</a>";
+                                document.getElementById("login").innerHTML = "<a href='/login'>היי, שם של משכיר</a>";
                                 document.getElementById("orders").innerHTML = "<a href='/myOrders'>ההזמנות שלי</a>";
                                 document.getElementById("apartments").innerHTML = "<a href='/myApartments'>הדירות שלי</a>";
                               }
@@ -103,8 +104,11 @@
     data-aos="fade" data-stellar-background-ratio="0.5" data-aos="fade">
     <div class="container">
       <div class="row align-items-center justify-content-center">
-        <div class="col-md-7 text-center" data-aos="fade-up" data-aos-delay="400">
-          <h1 class="text-white">*שים כותרת פה*</h1>
+        <div   id="logintitle" class="col-md-7 text-center" data-aos="fade-up" data-aos-delay="400">
+          <h1  class="text-white">התחברות</h1>
+        </div>
+        <div id="regtitle" class="col-md-7 text-center" data-aos="fade-up" data-aos-delay="400">
+          <h1 class="text-white">הרשמה</h1>
         </div>
       </div>
     </div>
@@ -113,19 +117,57 @@
       <!-- Picture & title of the page end-->
 
       <!-------------------------------- Your code ---------------------------------------------->
+      <!-- taken and changed from :https://codepen.io/colorlib/pen/rxddKy-->
+          <div class="form">
+            <form class="register-form"  action="/" method="GET">
+              <input type="text" id="fname" name="fname" placeholder="first name"/>
+              <input type="text"  id="lname" name="lname" placeholder="last name"/>
+              <input type="text" id="id" name="id" placeholder="id"/>
+              <input type="tel" id="phone" name="phone" pattern="[0-9]{2-3}-[0-9]{7}" placeholder="phone number"/>
+              <input type="password" id="pass" name="pass" placeholder="password"/>
+              <input type="text" id="address" name="adress" placeholder="address"/>
+              <label for="female">birthday</label>
+              <input type="date" id="birthday" name="birthday" placeholder="birthday" class="textbox-n"/>
+              <input type="email" id="email" name="email" placeholder="email"/>
+              <label for="male">
+              <input type="radio" id="male" name="gender" value="male" checked>
+              male
+              </label>
+              <input type="radio" id="female" name="gender" value="female">
+              <label for="female">Female</label>
+              
+              <div class="userType" >
+                <select class="form-control" id="userType" name="userType" placeholder="user type">
+                  <option value="student">student</option>
+                  <option value="landlord">landlord</option>
+                </select>
+              </div>
+              <div class="form-group" id="studentdiv">
+                <label for="female">start date at sami shamoon college</label>
+                <input type="date" id="startDate" name="startDate" placeholder="start date at sami shamoon college" class="textbox-n"/>
+                <label for="idPic">upload a student id picture:</label>
+                <input type="file" id="idPic" name="idPic">
+                <input type="text"  id="studyField" name="studyField" placeholder="field of study"/>
+              </div>
+              
 
-
-      
-
-
-
-
+              <button>create</button>
+              <p class="message">Already registered? <a href="#">Sign In</a></p>
+            </form>
+            <form class="login-form"  onclick="regValidiation()">
+              <input type="text" placeholder="ID"/>
+              <input type="password" placeholder="password"/>
+              <button>login</button>
+              <p class="message">Not registered? <a href="#">Create an account</a></p>
+            </form>
+          </div>
+ 
       <!-------------------------------- Your code ------------------------------------------>
 
 
 
   <!-------------------------------------- Buttom of the page --------------------------------------->
-  </div>
+
 
     <footer class="site-footer bg-light">
       <div class="container">
@@ -166,7 +208,6 @@
         </div>
     </footer>
 
-  </div>
 
     <!-- Scripts -->
 
@@ -184,6 +225,7 @@
       <script src="js/aos.js"></script>
       <script src="js/circleaudioplayer.js"></script>
       <script src="js/main.js"></script>
+      <script src="js/regLogClick.js"></script>
 
     <!-- Scripts end -->
 
