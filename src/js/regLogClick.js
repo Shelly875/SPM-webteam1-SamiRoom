@@ -61,14 +61,3 @@ $('#userType').change(function () {
   }
 });
 $('#userType').trigger('change');
-
-function loginValidiation() {
-  let x;
-  // x = document.getElementById('login-form').innerHTML;
-  alert('logged');
-}
-function regValidiation() {
-  // let x;
-  // x = document.getElementById('login-form').innerHTML;
-  alert('reged');
-}

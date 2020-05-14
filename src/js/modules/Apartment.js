@@ -51,7 +51,8 @@ module.exports = class Apartment {
 
       // return promise with the newStudent class
       return Promise.resolve(newApart);
-    });
+    })
+      .catch((err) => false);
     return object;
   }
 

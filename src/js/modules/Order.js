@@ -25,7 +25,7 @@ module.exports = class Order {
         apiKey: 'AIzaSyAmHD6wCC5S0k4m_YRpByMBPxSKr8xMhec',
         authDomain: 'samiroomdb.firebaseio.com',
         projectId: 'samiroomdb',
-      });
+      }).catch((err) => false);
     }
 
     // Example: get data from firestore database
@@ -74,6 +74,7 @@ module.exports = class Order {
       });
     });
   }
+
 
   printOrder(order) {
     order.then((doc) => {
