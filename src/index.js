@@ -1,8 +1,6 @@
-<<<<<<< HEAD
-/* eslint-disable eqeqeq */
-=======
+/* eslint-disable linebreak-style */
+/* eslint-disable no-alert */
 /* eslint-disable no-restricted-syntax */
->>>>>>> 800907ed1ce7e7cf44e82d44f0a403633cd5d7bb
 /* eslint-disable linebreak-style */
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-console */
@@ -56,14 +54,12 @@ APP.get('/myOrders', (req, res) => {
 
 APP.get('/login', (req, res) => {
   res.render(`${PATH}/login`);
-  let x=0;
-  if(x==2)
-  {
-    alert("logged");
+  const x = 0;
+  if (x === 2) {
+    alert('logged');
     res.render(`${PATH}/`);
-  }
-  else{
-    alert("failed");
+  } else {
+    alert('failed');
   }
 });
 

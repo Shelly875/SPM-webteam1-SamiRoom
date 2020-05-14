@@ -5,6 +5,7 @@
 /* eslint-disable no-undef */
 /* eslint-disable linebreak-style */
 const DB_REQ = require('firebase');
+const APART = require('./Apartment');
 
 module.exports = class Landlord {
   constructor(id = 0, firstname = null, lastname = null, phone = 0, email = null,
@@ -75,6 +76,27 @@ module.exports = class Landlord {
         phone: this.phone,
         companyName: this.companyName,
       });
+    });
+  }
+
+  getLandlordAparts(ownerID) {
+    // Initialize Cloud Firestore through Firebase
+    if (DB_REQ.apps.length === 0) {
+      DB_REQ.initializeApp({
+        apiKey: 'AIzaSyAmHD6wCC5S0k4m_YRpByMBPxSKr8xMhec',
+        authDomain: 'samiroomdb.firebaseio.com',
+        projectId: 'samiroomdb',
+      });
+    }
+    let apart;
+    const landlordAparts = {};
+    // Example: get data from firestore database
+    const db = DB_REQ.firestore();
+    let somePromise2 = new Promise(((resolve, reject) => {}));
+    somePromise2 = db.collection('Apartments').where('ownerID', '==', ownerID).get().then((docs) => {
+      docs.forEach((doc) => {
+      });
+      return somePromise;
     });
   }
 
