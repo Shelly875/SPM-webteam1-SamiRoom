@@ -158,17 +158,16 @@
     </div>
   </div>
 
-
   <!-------------------------------------- all Apartments --------------------------------------------------->
   <div class="site-section">
     <div class="container">
       <div class="row">
-        <form action="http://localhost:3000/details" method="GET" style="position: relative; margin: auto;">
+        <form action="http://localhost:3000/details" method="post" style="position: relative; margin: auto;">
           <ul>
             <% for(var key in apartments) {  %>
             <div class="img_wrap">
-              <a href='/details'><input type="image" class="img_wrap" name='<%=apartments[key][1] %>' name='hello'
-                  src='<%=apartments[key][3]%>/apart1.jpg' width="250" height="150" /></a>
+              <a href='/details'><input type="image" class="img_wrap" name='<%=apartments[key][1] %>' 
+                src='<%=apartments[key][3]%>/apart1.jpg' width="250" height="150" /></a>
               <div class="imgText"><%=apartments[key][0] %>, <%=apartments[key][9] %></div>
             </div>
             <% } %>

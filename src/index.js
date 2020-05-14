@@ -1,9 +1,11 @@
+/* eslint-disable no-restricted-syntax */
 /* eslint-disable linebreak-style */
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-console */
 /* eslint-disable linebreak-style */
 
 const EXPRESS = require('express');
+const BODY_PARSER = require('body-parser');
 const DB = require('./js/db-func');
 const STUDENT = require('./js/modules/Student');
 const ORDER = require('./js/modules/Order');
@@ -14,6 +16,7 @@ const APP_PORT = process.env.PORT || 3000;
 const APP = EXPRESS();
 const PATH = __dirname;
 
+APP.use(EXPRESS.urlencoded({ extended: true }));
 APP.use(EXPRESS.static(__dirname));
 console.log('starting...');
 
@@ -63,13 +66,17 @@ APP.get('/payment', (req, res, idApart) => {
   res.render(`${PATH}/payment`);
 });
 
-APP.get('/details', (req, res, id) => {
+APP.post('/details', (req, res) => {
   let apart2 = new Promise(((resolve, reject) => {}));
   let apartmentID; let address; let squereMeter;
   let pricePerMonth; let startDate; let isRent; let numRoom; let description;
-  let imagePath; let ownerID; let city;
+  let imagePath; let ownerID; let city; let id;
+
   // we need to get this from the previuos screen
-  apart2 = apart.searchApartById(9000000);
+  for (const [key, value] of Object.entries(req.body)) {
+    id = key.substring(0, key.length - 2);
+  }
+  apart2 = apart.searchApartById(Number(id));
   apart2.then((doc) => {
     numRoom = doc.numRoom;
     apartmentID = doc.apartmentID;

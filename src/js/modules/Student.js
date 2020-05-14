@@ -11,7 +11,7 @@ module.exports = class Student {
     phone = 0, email = null, address = null, IsApproved = false,
     studentCardNum = 0, password = null) {
     this.id = id;
-    this.firtsname = firstname;
+    this.firstname = firstname;
     this.lastname = lastname;
     this.city = city;
     this.phone = phone;
