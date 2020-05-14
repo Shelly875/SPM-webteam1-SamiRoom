@@ -45,7 +45,8 @@ module.exports = class Landlord {
 
       // return promise with the newStudent class
       return Promise.resolve(newLandlord);
-    });
+    })
+      .catch((err) => false);
 
     return object;
   }
@@ -79,6 +80,63 @@ module.exports = class Landlord {
     });
   }
 
+  searchLandlordByID(landID) {
+    // Initialize Cloud Firestore through Firebase
+    if (DB_REQ.apps.length === 0) {
+      DB_REQ.initializeApp({
+        apiKey: 'AIzaSyAmHD6wCC5S0k4m_YRpByMBPxSKr8xMhec',
+        authDomain: 'samiroomdb.firebaseio.com',
+        projectId: 'samiroomdb',
+      });
+    }
+
+    // Example: get data from firestore database
+    const db = DB_REQ.firestore();
+    let somePromise = new Promise(((resolve, reject) => {}));
+    let somePromise2 = new Promise(((resolve, reject) => {}));
+    somePromise2 = db.collection('Landlord').where('ID', '==', landID).get().then((docs) => {
+      if (docs.empty) {
+        return Promise.resolve(false);
+      }
+      docs.forEach((doc) => { somePromise = this.readLandFromDB(doc.id); });
+      return somePromise;
+    });
+    return somePromise2;
+  }
+
+  confirmLandlord(landlordID, landlordPass) {
+    // Initialize Cloud Firestore through Firebase
+    if (DB_REQ.apps.length === 0) {
+      DB_REQ.initializeApp({
+        apiKey: 'AIzaSyAmHD6wCC5S0k4m_YRpByMBPxSKr8xMhec',
+        authDomain: 'samiroomdb.firebaseio.com',
+        projectId: 'samiroomdb',
+      });
+    }
+
+    // Example: get data from firestore database
+    const db = DB_REQ.firestore();
+    let somePromise = new Promise(((resolve, reject) => {}));
+    let somePromise2 = new Promise(((resolve, reject) => {}));
+    somePromise = this.searchLandlordByID(landlordID);
+    somePromise2 = somePromise.then((landlord) => {
+      // Landlord is not exists
+      if (landlord === false) {
+        console.log('Landlord not exists');
+        return Promise.resolve(landlord);
+      }
+      // Landlord password not equal to the one sent
+      if (landlord.password !== landlordPass) {
+        console.log('Pass are not alike!');
+        return Promise.resolve(true);
+      }
+      // Landlord confirmed
+      console.log('Landlord confirmed successfully!');
+      return Promise.resolve(true);
+    });
+    return somePromise2;
+  }
+
   getLandlordAparts(ownerID) {
     // Initialize Cloud Firestore through Firebase
     if (DB_REQ.apps.length === 0) {
@@ -88,16 +146,32 @@ module.exports = class Landlord {
         projectId: 'samiroomdb',
       });
     }
-    let apart;
-    const landlordAparts = {};
     // Example: get data from firestore database
     const db = DB_REQ.firestore();
+    const landlordAparts = {};
+    const apartment = [];
+    let count = 1;
+    const index = 0;
     let somePromise2 = new Promise(((resolve, reject) => {}));
     somePromise2 = db.collection('Apartments').where('ownerID', '==', ownerID).get().then((docs) => {
       docs.forEach((doc) => {
+        apartment[index] = doc.data().address;
+        apartment[index + 1] = doc.data().apartmentID;
+        apartment[index + 2] = doc.data().description;
+        apartment[index + 3] = doc.data().imagePath;
+        apartment[index + 4] = doc.data().isRent;
+        apartment[index + 5] = doc.data().numRoom;
+        apartment[index + 6] = doc.data().ownerID;
+        apartment[index + 7] = doc.data().squereMeter;
+        apartment[index + 8] = doc.data().pricePerMonth;
+        apartment[index + 9] = doc.data().city;
+        apartment[index + 10] = doc.data().startDate;
+        landlordAparts[`apart0${count}`] = apartment.slice();
+        count += 1;
       });
-      return somePromise;
+      return Promise.resolve(landlordAparts);
     });
+    return somePromise2;
   }
 
 

@@ -37,3 +37,4 @@ $('#userType').change(function () {
 
   }
 });
+$('#userType').trigger('change');

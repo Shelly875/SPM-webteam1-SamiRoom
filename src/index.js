@@ -37,11 +37,18 @@ const landlord = new LAND();
 // declare apartment class
 const apart = new APART();
 
+landlord.confirmLandlord(316243567, 'Wedg153k*').then((result) => {
+  console.log(result);
+});
+
 APP.get('/', (req, res) => {
   // All apartments in the main page
   apart.getAllApart().then((apartments) => {
     res.render(`${PATH}/`, { apartments });
   });
+});
+
+APP.post('/', (req, res) => {
 });
 
 APP.get('/contact', (req, res) => {
@@ -52,17 +59,28 @@ APP.get('/myOrders', (req, res) => {
   res.render(`${PATH}/orders`);
 });
 
+APP.post('/login', (req, res) => {
+  res.render(`${PATH}/login`);
+  console.log(req.body.user.id);
+});
+
 APP.get('/login', (req, res) => {
   res.render(`${PATH}/login`);
- 
 });
 
 APP.get('/registertion', (req, res) => {
   res.render(`${PATH}/registertion`);
 });
 
-APP.get('/myApartments', (req, res, idApart) => {
-  res.render(`${PATH}/apartments`);
+APP.get('/newApart', (req, res) => {
+  res.render(`${PATH}/newApart`);
+});
+
+APP.get('/myApartments', (req, res) => {
+  // All landlord apartments in the apartments page
+  landlord.getLandlordAparts(316243567).then((landApartments) => {
+    res.render(`${PATH}/apartments`, { landApartments });
+  });
 });
 
 APP.get('/payment', (req, res, idApart) => {
