@@ -47,7 +47,7 @@ module.exports = class Order {
     return object;
   }
 
-  writeStudentToDB(apartID, studentID, isPaid, landlordID, numPayments, orderID, numPaid) {
+  writeStudentToDB() {
     // Initialize Cloud Firestore through Firebase
     if (DB_REQ.apps.length === 0) {
       DB_REQ.initializeApp({
@@ -64,13 +64,13 @@ module.exports = class Order {
       const n = doc.size;
       // add new row
       db.collection('Orders').doc(`order0${n + 1}`).set({
-        apartID,
-        studentID,
-        isPaid,
-        landlordID,
-        numPayments,
-        orderID,
-        numPaid,
+        apartID: this.apartID,
+        studentID: this.studentID,
+        isPaid: this.isPaid,
+        landlordID: this.landlordID,
+        numPayments: this.numPayments,
+        orderID: this.orderID,
+        numPaid: this.numPaid,
       });
     });
   }

@@ -11,7 +11,7 @@ module.exports = class Student {
     phone = 0, email = null, address = null, IsApproved = false,
     studentCardNum = 0, password = null) {
     this.id = id;
-    this.firtsname = firstname;
+    this.firstname = firstname;
     this.lastname = lastname;
     this.city = city;
     this.phone = phone;
@@ -54,8 +54,28 @@ module.exports = class Student {
     return object;
   }
 
-  writeStudentToDB(id, IsApproved, address, city, firstname, lastname, phone,
-    email, password, studentCardNum, startDate) {
+  searchStudentByID(studentID) {
+    // Initialize Cloud Firestore through Firebase
+    if (DB_REQ.apps.length === 0) {
+      DB_REQ.initializeApp({
+        apiKey: 'AIzaSyAmHD6wCC5S0k4m_YRpByMBPxSKr8xMhec',
+        authDomain: 'samiroomdb.firebaseio.com',
+        projectId: 'samiroomdb',
+      });
+    }
+
+    // Example: get data from firestore database
+    const db = DB_REQ.firestore();
+    let somePromise = new Promise(((resolve, reject) => {}));
+    let somePromise2 = new Promise(((resolve, reject) => {}));
+    somePromise2 = db.collection('Students').where('ID', '==', studentID).get().then((docs) => {
+      docs.forEach((doc) => { somePromise = this.readApartFromDB(doc.id); });
+      return somePromise;
+    });
+    return somePromise2;
+  }
+
+  writeStudentToDB() {
     // Initialize Cloud Firestore through Firebase
     if (DB_REQ.apps.length === 0) {
       DB_REQ.initializeApp({
@@ -72,17 +92,17 @@ module.exports = class Student {
       const n = doc.size;
       // add new row
       db.collection('Students').doc(`student0${n + 1}`).set({
-        ID: id,
-        IsApproved,
-        address,
-        city,
-        email,
-        firstname,
-        lastname,
-        password,
-        phone,
-        startDate,
-        studentCardNum,
+        ID: this.id,
+        IsApproved: this.IsApproved,
+        address: this.address,
+        city: this.city,
+        email: this.email,
+        firstname: this.firtsname,
+        lastname: this.lastname,
+        password: this.password,
+        phone: this.phone,
+        startDate: this.startDate,
+        studentCardNum: this.studentCardNum,
       });
     });
   }
