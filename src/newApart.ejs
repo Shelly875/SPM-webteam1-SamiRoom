@@ -2,7 +2,7 @@
 
     <!------------------------------------------------ Head start ---------------------------------------------------------------------->
     <head>
-            <title>SamiRoom | דירה חדשה</title>
+            <title>SamiRoom | דירה חדשה </title>
             <meta charset="utf-8">
             <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
             <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito+Sans:200,300,400,700,900|Oswald:400,700"> 
@@ -35,8 +35,9 @@
     <!--------------------------------------------- Body start------------------------------------------------------------------------>
     <body>            
 
-    <!------------------------  site nevigations   ------------------------->
 
+      <!------------------------  site nevigations   ------------------------->
+      
       <%- include('views/navPanel'); %>
 
       <!------------------------  site nevigations end ------------------------->
@@ -48,57 +49,142 @@
     <div class="container">
       <div class="row align-items-center justify-content-center">
         <div class="col-md-7 text-center" data-aos="fade-up" data-aos-delay="400">
-          <h1 class="text-white"> דירה חדשה</h1>
+          <h1 class="text-white">דירה חדשה</h1>
         </div>
       </div>
     </div>
-  </>
+  </div>
 
       <!-- Picture & title of the page end-->
 
       <!-------------------------------- Your code ---------------------------------------------->
-    
-      <div class="container">
-        <div class="featured-property-half d-flex">
-          <!----<div class="image" style="background-image: url('images/Titles/students_apart1.jpg')"></div>-->
-          <div class="text">
-            <h2 style="text-align:right;">הכנס את פרטי הדירה </h2>
-            <form action="/action_page.php">
-              <label for="addres">כתובת</label>
-              <input type="text" id="addres" name="fname" value="0"><br><br>
-              <label for="numofRoom">מספר חדרים</label>
-              <input type="text" id="numofRoom" name="lname" value="0"><br><br>
-              <label for="sizep">גודל הדירה</label>
-              <input type="text" id="sizep" name="lname" value="0"><br><br>
-              <label for="price">מחיר הדירה</label>
-              <input type="text" id="price" name="lname" value="0"><br><br>
-            
-              <label for="dateEnter">תאריך כניסה</label>
-              <input type="text" id="price" name="lname" value="0"><br><br>
+ <div class="site-section">
+   <div class="container">
+      <form style="text-align:right;">
+        <div class="form-group">
+          <label for="exampleFormControlInput1">:כתובת </label>
+          <input type="text" style="text-align:right;" class="form-control" id="address">
+        </div>
+        <div class="form-group">
+            <label for="exampleFormControlInput1">:עיר </label>
+            <input type="text" style="text-align:right;" class="form-control" id="city">
+        </div>
+        <div class="form-group">
+            <label for="exampleFormControlInput1">:תיאור </label>
+            <input type="text" style="text-align:right;" class="form-control" id="description">
+        </div>
+        <div class="form-group">
+          <label for="exampleFormControlSelect1">: מספר חדרים</label>
+          <select dir = "rtl" class="form-control" id="roomNum">
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+          </select>
+        </div>
+        <div class="form-group" dir= "rtl">
+          <label for="exampleFormControlTextarea1">גודל דירה:</label>
+          <textarea class="form-control" id="squereMeter" rows="1" style="width: 50px;"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="exampleFormControlInput1">:תעודת זהות</label>
+            <input type="text" style="text-align:right;" class="form-control" id="ownerID">
+        </div>
+        <div class="form-group">
+            <label for="exampleFormControlInput1">:שכר דירה</label>
+            <input type="text" style="text-align:right;" class="form-control" id="payPerMonth">
+        </div>
+        <div class="form-group">
+            <label for="exampleFormControlInput1">:תאריך כניסה</label>
+            <input type="date" style="text-align:right;" class="form-control" id="startDate">
+        </div>
+        <br><div class="form-group">
+            <label for="exampleFormControlInput1">:העלאת תמונות דירה</label>
+            <br><input dir = "rtl" type="file" id="img" name="img" accept="image/*">
+        </div></br>
+        <div class="form-group">
+            <b><label for="exampleFormControlInput1">:אטרקציות</label></b>
+            <br><label for="exampleFormControlInput1">:כמות אטרקציות</label></br>
+            <select dir = "rtl" class="form-control" id="attrNum">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+              </select>            
+        </div>
+        <br><div class="form-group" id="attrection">
+            <label for="exampleFormControlInput1">:שם אטרקציה</label>
+            <input type="text" style="text-align:right;" class="form-control" id="attrName1">
+        
+            <label for="exampleFormControlInput1">:תיאור האטרקציה</label>
+            <input type="text" style="text-align:right;" class="form-control" id="desc1">
+   
+            <label for="exampleFormControlInput1">העלאת תמונת אטרקציה</label>
+            <br><input dir = "rtl" type="file" id="img1" name="img" accept="image/*">
+        </div></br>
+        <div class="form-group">
+            <br><input type="button" class="btn btn-primary px-5 py-3" value="העלאה"></br>
+        </div>
+      </form>
+     </div>
+   </div>
+ </div>
+      
 
-              <input type="submit" onclick= "myFunction()" value="Submit">
-              <script>
-               function myFunction()
-                {
-                  var a = document.getElementById("addres").value.length;
-                  var b = document.getElementById("numofRoom").value.length;
-                  var c = document.getElementById("sizep").value.length;
-                  var d = document.getElementById("price").value.length;
-                if(a<2 ||b <2 || c <2 || d<2)
-                    var r =confirm("error");
 
-               }
-                </script>
-            </form>
-            <br></br>
-            </div>
+
       <!-------------------------------- Your code ------------------------------------------>
 
 
-  <!-------------------------------------- Buttom of the page --------------------------------------->
-  
 
-    
+  <!-------------------------------------- Buttom of the page --------------------------------------->
+  </div>
+
+    <footer class="site-footer bg-light">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-4">
+            <div class="row">
+              <div class="col-md-12">
+                <h3 class="footer-heading mb-4">Follow Us</h3>
+
+                <div>
+                  <a href="#" class="pl-0 pr-3"><span class="icon-facebook"></span></a>
+                  <a href="#" class="pl-3 pr-3"><span class="icon-twitter"></span></a>
+                  <a href="#" class="pl-3 pr-3"><span class="icon-instagram"></span></a>
+                  <a href="#" class="pl-3 pr-3"><span class="icon-linkedin"></span></a>
+                </div>
+              </div>
+            </div>
+
+          </div>
+         
+
+          </div>
+          
+        </div>
+
+        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+
+        <div class="row pt-5 mt-5 text-center">
+            <div class="col-md-12">
+              <p>
+                 
+                 Copyright &copy;<script data-cfasync="false" 
+                 src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+                 <script>document.write(new Date().getFullYear());</script> All rights reserved | <i class="icon-heart text-danger" 
+                 aria-hidden="true"></i> by webTeam1</a>
+              </p>
+            </div>
+        </div>
+    </footer>
+
+  </div>
+
+    <!-- Scripts -->
+
       <script src="js/jquery-3.3.1.min.js"></script>
       <script src="js/jquery-migrate-3.0.1.min.js"></script>
       <script src="js/jquery-ui.js"></script>

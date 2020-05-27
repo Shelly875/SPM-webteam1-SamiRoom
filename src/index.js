@@ -98,6 +98,10 @@ APP.get('/newApart', (req, res) => {
   res.render(`${PATH}/newApart`);
 });
 
+APP.get('/editApart', (req, res) => {
+  res.render(`${PATH}/editApart`);
+});
+
 APP.get('/myApartments', (req, res) => {
   // All landlord apartments in the apartments page
   landlord.getLandlordAparts(316243567).then((landApartments) => {
