@@ -8,16 +8,18 @@ const DB_REQ = require('firebase');
 const APART = require('./Apartment');
 
 module.exports = class Landlord {
-  constructor(id = 0, firstname = null, lastname = null, phone = 0, email = null,
-    isPrivate = true, companyName = null, password = null) {
+  constructor(id = 0, firstname = null, lastname = null, city = null, phone = 0, email = null,
+    isPrivate = true, companyName = null, password = null, birthday = null) {
     this.id = id;
     this.firtsname = firstname;
     this.lastname = lastname;
     this.phone = phone;
     this.email = email;
+    this.city = city;
     this.isPrivate = isPrivate;
-    this.studentCardNum = password;
+    this.password = password;
     this.companyName = companyName;
+    this.birthday = birthday;
   }
 
   readLandFromDB(landlordDocNum) {
@@ -39,9 +41,11 @@ module.exports = class Landlord {
       newLandlord.lastname = doc.data().lastname;
       newLandlord.phone = doc.data().phone;
       newLandlord.email = doc.data().email;
+      newLandlord.city = doc.data().city;
       newLandlord.isPrivate = doc.data().isPrivate;
       newLandlord.password = doc.data().password;
       newLandlord.companyName = doc.data().companyName;
+      newLandlord.birthday = doc.data().birthday;
 
       // return promise with the newStudent class
       return Promise.resolve(newLandlord);
@@ -73,9 +77,11 @@ module.exports = class Landlord {
         email: this.email,
         firstname: this.firtsname,
         lastname: this.lastname,
+        city: this.city,
         password: this.password,
         phone: this.phone,
         companyName: this.companyName,
+        birthday: this.birthday,
       });
     });
   }

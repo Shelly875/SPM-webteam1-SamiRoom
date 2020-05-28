@@ -10,7 +10,7 @@ const DB_REQ = require('firebase');
 module.exports = class Student {
   constructor(id = 0, password = null, firstname = null, lastname = null, city = null,
     phone = 0, email = null, address = null, IsApproved = false,
-    studentCardNum = 0) {
+    studentCardNum = 0, birthdate = null) {
     this.id = id;
     this.firstname = firstname;
     this.lastname = lastname;
@@ -21,6 +21,7 @@ module.exports = class Student {
     this.IsApproved = IsApproved;
     this.studentCardNum = studentCardNum;
     this.password = password;
+    this.birthdate = birthdate;
   }
 
   readStudentFromDB(studentDocNum) {
@@ -137,11 +138,11 @@ module.exports = class Student {
         address: this.address,
         city: this.city,
         email: this.email,
-        firstname: this.firtsname,
+        firstname: this.firstname,
         lastname: this.lastname,
         password: this.password,
         phone: this.phone,
-        startDate: this.startDate,
+        birthdate: this.birthdate,
         studentCardNum: this.studentCardNum,
       });
     });

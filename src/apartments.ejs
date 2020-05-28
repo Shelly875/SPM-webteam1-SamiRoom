@@ -27,10 +27,12 @@
     
   </head>
   <body>
-
+  
+  <!--------------------------------- Icon -------------------------------------------------->
+    <link rel="icon" href="images/Logos/house.png" type="image/icon type">
   <!------------------------  site nevigations   ------------------------->
 
-  <%- include('views/navPanel'); %>
+  <%- include('views/navPanel', {isLogged}); %>
   
 <!------------------------ Search bar ------------------------------------->
    <div class="site-mobile-menu">

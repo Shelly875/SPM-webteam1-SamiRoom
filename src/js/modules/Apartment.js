@@ -6,6 +6,7 @@
 /* eslint-disable linebreak-style */
 const DB_REQ = require('firebase');
 
+
 module.exports = class Apartment {
   constructor(apartmentID = 0, address = null, city = null, description = null,
     imagePath = null, isRent = false, numRoom = 0, ownerID = 0, pricePerMonth = 0,

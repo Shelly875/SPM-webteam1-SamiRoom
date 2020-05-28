@@ -13,6 +13,8 @@ const STUDENT = require('./js/modules/Student');
 const ORDER = require('./js/modules/Order');
 const LAND = require('./js/modules/Landlord');
 const APART = require('./js/modules/Apartment');
+const auth = require('./modules/auth');
+// const apartValidation = require('./js/apartValidation');
 
 const APP_PORT = process.env.PORT || 3000;
 const APP = EXPRESS();
@@ -37,57 +39,97 @@ const landlord = new LAND();
 // declare apartment class
 const apart = new APART();
 
+const isLogged = auth.isLogged();
+
+const baseArgg = { isLogged, isLandLord: false, isStudent: false };
+
 APP.get('/', (req, res) => {
   // All apartments in the main page
   apart.getAllApart().then((apartments) => {
-    res.render(`${PATH}/`, { apartments });
+    baseArgg.apartments = apartments;
+    res.render(`${PATH}/`, { ...baseArgg });
   });
 });
 
 APP.post('/', (req, res) => {
-  // All apartments in the main page
-  apart.getAllApart().then((apartments) => {
-    res.render(`${PATH}/`, { apartments });
-  });
+  if (req.body.user.regidcard) {
+    const newStudent = new STUDENT(req.body.user.regid, req.body.user.regpass,
+      req.body.user.fname, req.body.user.lname, req.body.user.city,
+      req.body.user.phone, req.body.user.email, req.body.user.address,
+      true, req.body.user.regidcard, req.body.user.birthday);
+    const studentName = req.body.user.fname;
+    const studentID = req.body.user.regid;
+    baseArgg.isStudent = true;
+    baseArgg.isLogged = true;
+    baseArgg.studentName = studentName;
+    baseArgg.studentID = Number(studentID);
+    newStudent.writeStudentToDB();
+    // All apartments in the main page
+    apart.getAllApart().then((apartments) => {
+      baseArgg.apartments = apartments;
+      res.render(`${PATH}/`, { ...baseArgg });
+    });
+  } else {
+    const newLand = new LAND(req.body.user.regid,
+      req.body.user.fname, req.body.user.lname, req.body.user.city,
+      req.body.user.phone, req.body.user.email, null,
+      true, null, req.body.user.regpass, req.body.user.birthday);
+    const landName = req.body.user.fname;
+    const landID = req.body.user.regid;
+    baseArgg.isLandLord = true;
+    baseArgg.isLogged = true;
+    baseArgg.landName = landName;
+    baseArgg.landID = Number(landID);
+    newLand.writeLandlordToDB();
+    // All apartments in the main page
+    apart.getAllApart().then((apartments) => {
+      baseArgg.apartments = apartments;
+      res.render(`${PATH}/`, { ...baseArgg });
+    });
+  }
 });
 
 APP.get('/contact', (req, res) => {
-  res.render(`${PATH}/contact`);
+  res.render(`${PATH}/contact`, { ...baseArgg });
 });
 
 APP.get('/myOrders', (req, res) => {
-  res.render(`${PATH}/orders`);
+  res.render(`${PATH}/orders`, { ...baseArgg });
 });
 
 APP.post('/login', (req, res) => {
   const userID = req.body.user.id;
   const userPass = req.body.user.pass;
   const isStudent = true;
-  student.confirmStudent(Number(userID), userPass).then((result) => {
-    if (result === false) {
-      res.render(`${PATH}/login`, { result });
+  student.confirmStudent(Number(userID), userPass).then((resultStudent) => {
+    if (resultStudent === false) {
+      landlord.confirmLandlord(Number(userID), userPass).then((resultLandlord) => {
+        if (resultLandlord === false) {
+          res.render(`${PATH}/login`, { ...baseArgg, resultLandlord });
+        } else {
+          landlord.searchLandlordByID(Number(userID)).then((land) => {
+            baseArgg.isLandLord = true;
+            baseArgg.isLogged = true;
+            baseArgg.landName = land.firstname;
+            baseArgg.landID = Number(userID);
+            res.render(`${PATH}/`, { ...baseArgg });
+          });
+        }
+      });
     } else {
       student.searchStudentByID(Number(userID)).then((stud) => {
-        const studentName = stud.firstname;
-        res.render(`${PATH}/`, { userID }, { isStudent }, { studentName });
-      });
-    }
-  });
-  landlord.confirmLandlord(Number(userID), userPass).then((result) => {
-    if (result === false) {
-      console.log(1);
-      res.render(`${PATH}/login`, { result });
-    } else {
-      landlord.searchLandlordByID(Number(userID)).then((land) => {
-        const landlordName = land.firstname;
-        res.render(`${PATH}/`, { userID }, { isStudent }, { landlordName });
+        baseArgg.isStudent = true;
+        baseArgg.isLogged = true;
+        baseArgg.studentName = stud.firstname;
+        baseArgg.studentID = Number(userID);
+        res.render(`${PATH}/`, { ...baseArgg });
       });
     }
   });
 });
 
 APP.get('/login', (req, res) => {
-  res.render(`${PATH}/login`);
+  res.render(`${PATH}/login`, { ...baseArgg });
 });
 
 APP.get('/registertion', (req, res) => {
@@ -95,22 +137,29 @@ APP.get('/registertion', (req, res) => {
 });
 
 APP.get('/newApart', (req, res) => {
-  res.render(`${PATH}/newApart`);
+  res.render(`${PATH}/newApart`, { ...baseArgg });
 });
 
 APP.get('/editApart', (req, res) => {
-  res.render(`${PATH}/editApart`);
+  res.render(`${PATH}/editApart`, { ...baseArgg });
+});
+
+APP.post('/myApartments', (req, res) => {
+  // All landlord apartments in the apartments page
+  landlord.getLandlordAparts(316243567).then((landApartments) => {
+    res.render(`${PATH}/apartments`, { landApartments, ...baseArgg });
+  });
 });
 
 APP.get('/myApartments', (req, res) => {
   // All landlord apartments in the apartments page
-  landlord.getLandlordAparts(316243567).then((landApartments) => {
-    res.render(`${PATH}/apartments`, { landApartments });
+  landlord.getLandlordAparts(baseArgg.landID).then((landApartments) => {
+    res.render(`${PATH}/apartments`, { landApartments, ...baseArgg });
   });
 });
 
 APP.get('/payment', (req, res, idApart) => {
-  res.render(`${PATH}/payment`);
+  res.render(`${PATH}/payment`, { ...baseArgg });
 });
 
 APP.post('/details', (req, res) => {
@@ -135,6 +184,7 @@ APP.post('/details', (req, res) => {
     city = doc.city;
     imagePath = doc.imagePath;
     res.render(`${PATH}/apartment-detail`, {
+      ...baseArgg,
       apartmentID,
       address,
       numRoom,
