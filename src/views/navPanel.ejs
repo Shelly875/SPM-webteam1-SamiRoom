@@ -25,34 +25,12 @@
                   <li id="login"><a href="/login">התחברות/הרשמה</a></li>
                   
                 <% } else{ if(isLandLord){ %>
-                  <li id="home"><a href="/" onclick="">  היי <%= landName %> / התנתק</a></li>
+                  <li id="home"><a href="/logout" onclick="">  היי <%= landName %> / התנתק</a></li>
                   <li id="orders"><a href="/myOrders">ההזמנות שלי</a></li>
                   <li id="apartments"><a href="/myApartments">הדירות שלי</a></li>
                 <% } else { if(isStudent){ %>
-                  <li id="home"><a href="/"> היי <%= studentName %></a></li>
+                  <li id="home"><a href="/logout"> היי <%= studentName %></a></li>
                 <%}}} %>
-
-                <!--Check if the user is landlord-->
-                <!-- <script>
-                  // Take data from database
-                  var a = 1;
-                  if (a == ) {
-                    document.getElementById("login").innerHTML = "<a href='/login'>התחברות/הרשמה</a>";
-                    document.getElementById("orders").innerHTML = "<a href='/myOrders'>ההזמנות שלי</a>";
-                    document.getElementById("apartments").innerHTML = "<a href='/myApartments'>הדירות שלי</a>";
-                  }
-                </script> -->
-                <!--End-->
-
-                <!--Check if the user is student-->
-                <!-- <script>
-                  // Take data from database
-                  var a = 1;
-                  if (a == 2) {
-                    document.getElementById("login").innerHTML = "<a href='#'>היי, שם של סטודנט</a>";
-                  }
-                </script> -->
-                <!--End-->
                 <li id="home"><a href="/">ראשי</a></li>
 
               </ul>

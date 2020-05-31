@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable camelcase */
 const firebase_auth = require('@firebase/auth');
 
 function isLogged() {

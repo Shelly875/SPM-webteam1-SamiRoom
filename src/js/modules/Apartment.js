@@ -57,7 +57,7 @@ module.exports = class Apartment {
     return object;
   }
 
-  writeApartToDB() {
+  async writeApartToDB() {
     // Initialize Cloud Firestore through Firebase
     if (DB_REQ.apps.length === 0) {
       DB_REQ.initializeApp({

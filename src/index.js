@@ -1,3 +1,4 @@
+/* eslint-disable no-plusplus */
 /* eslint-disable linebreak-style */
 /* eslint-disable no-alert */
 /* eslint-disable no-restricted-syntax */
@@ -8,12 +9,15 @@
 
 const EXPRESS = require('express');
 const BODY_PARSER = require('body-parser');
+const FS = require('fs');
 const DB = require('./js/db-func');
 const STUDENT = require('./js/modules/Student');
 const ORDER = require('./js/modules/Order');
 const LAND = require('./js/modules/Landlord');
 const APART = require('./js/modules/Apartment');
+const ATTR = require('./js/modules/Attraction');
 const auth = require('./modules/auth');
+
 // const apartValidation = require('./js/apartValidation');
 
 const APP_PORT = process.env.PORT || 3000;
@@ -39,7 +43,7 @@ const landlord = new LAND();
 // declare apartment class
 const apart = new APART();
 
-const isLogged = auth.isLogged();
+const isLogged = false;
 
 const baseArgg = { isLogged, isLandLord: false, isStudent: false };
 
@@ -93,6 +97,14 @@ APP.get('/contact', (req, res) => {
   res.render(`${PATH}/contact`, { ...baseArgg });
 });
 
+APP.get('/logout', (req, res) => {
+  baseArgg.isLogged = false;
+  baseArgg.isStudent = false;
+  baseArgg.isLandLord = false;
+  console.log('successfully logout!');
+  res.render(`${PATH}/`, { ...baseArgg });
+});
+
 APP.get('/myOrders', (req, res) => {
   res.render(`${PATH}/orders`, { ...baseArgg });
 });
@@ -100,7 +112,6 @@ APP.get('/myOrders', (req, res) => {
 APP.post('/login', (req, res) => {
   const userID = req.body.user.id;
   const userPass = req.body.user.pass;
-  const isStudent = true;
   student.confirmStudent(Number(userID), userPass).then((resultStudent) => {
     if (resultStudent === false) {
       landlord.confirmLandlord(Number(userID), userPass).then((resultLandlord) => {
@@ -145,8 +156,51 @@ APP.get('/editApart', (req, res) => {
 });
 
 APP.post('/myApartments', (req, res) => {
+  // Save attractions to db
+  let attrIndex = 0;
+  const apartID = req.body.apart.ID;
+  const attrName = req.body.attr.name;
+  const attrID = req.body.attr.ID;
+  const attrDesc = req.body.attr.desc;
+  const attrBefore = req.body.attr.before;
+  const attrAfter = req.body.attr.after;
+  const attrImg = req.body.attr.img;
+  const apartImg = `images/Apartments/${req.body.apart.ID}`;
+
+  // only one attraction
+  if (typeof attrName === 'string') {
+    // declare attraction class
+    const attr = new ATTR(Number(apartID), Number(attrID), attrName,
+      attrDesc, `images/Attractions/${attrImg}`, attrBefore, attrAfter);
+
+    attr.writeAttrToDB();
+  } else {
+    // multiple attractions
+    for (attrIndex; attrIndex < attrName.length; attrIndex++) {
+      // declare attraction class
+      const attr = new ATTR(Number(apartID), Number(attrID[attrIndex]), attrName[attrIndex],
+        attrDesc[attrIndex], `images/Attractions/${attrImg[attrIndex]}`, attrBefore[attrIndex], attrAfter[attrIndex]);
+
+      attr.writeAttrToDB();
+    }
+  }
+
+  // Save apartment to db
+  // create new images folder to the new apartment
+  // if (!FS.existsSync(apartImg)) {
+  //   FS.mkdir();
+  //   FS.writeFile(apartImg, req.body.apart.img);
+  //   console.log('1');
+  // }
+  // declare attraction class
+  // const newApart = new ATTR(req.body.apart.ID, req.body.apart.address, req.body.apart.city,
+  //   req.body.apart.desc, apartImg);
+
+  // newApart.writeAttrToDB();
+
+
   // All landlord apartments in the apartments page
-  landlord.getLandlordAparts(316243567).then((landApartments) => {
+  landlord.getLandlordAparts(baseArgg.landID).then((landApartments) => {
     res.render(`${PATH}/apartments`, { landApartments, ...baseArgg });
   });
 });
@@ -158,12 +212,23 @@ APP.get('/myApartments', (req, res) => {
   });
 });
 
-APP.get('/payment', (req, res, idApart) => {
+APP.post('/addAttraction', (req, res) => {
+  res.render(`${PATH}/details`, { ...baseArgg });
+});
+
+APP.get('/addAttraction', (req, res) => {
+  res.render(`${PATH}/addAttraction`, { ...baseArgg });
+});
+
+APP.get('/payment', (req, res) => {
   res.render(`${PATH}/payment`, { ...baseArgg });
 });
 
 APP.post('/details', (req, res) => {
   let apart2 = new Promise(((resolve, reject) => {}));
+  const attr = new ATTR();
+
+  let attractions = new Promise(((resolve, reject) => {}));
   let apartmentID; let address; let squereMeter;
   let pricePerMonth; let startDate; let isRent; let numRoom; let description;
   let imagePath; let ownerID; let city; let id;
@@ -183,18 +248,24 @@ APP.post('/details', (req, res) => {
     pricePerMonth = doc.pricePerMonth;
     city = doc.city;
     imagePath = doc.imagePath;
-    res.render(`${PATH}/apartment-detail`, {
-      ...baseArgg,
-      apartmentID,
-      address,
-      numRoom,
-      squereMeter,
-      startDate,
-      isRent,
-      description,
-      city,
-      pricePerMonth,
-      imagePath,
+    baseArgg.apartID = Number(id);
+    // attractions
+    attractions = attr.getAllAttrByApart(Number(id));
+    attractions.then((allAtters) => {
+      baseArgg.allAtters = allAtters;
+      res.render(`${PATH}/apartment-detail`, {
+        ...baseArgg,
+        apartmentID,
+        address,
+        numRoom,
+        squereMeter,
+        startDate,
+        isRent,
+        description,
+        city,
+        pricePerMonth,
+        imagePath,
+      });
     });
   });
 });

@@ -20,6 +20,7 @@
             <link rel="stylesheet" href="css/fl-bigmug-line.css">
             <link rel="stylesheet" href="css/aos.css">
             <link rel="stylesheet" href="css/style.css">
+            <link rel="stylesheet" href="css/mainImageHover.css">
 
             <!-- The core Firebase JS SDK is always required and must be listed first -->
             <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-app.js"></script>
@@ -86,15 +87,43 @@
           </ul>
           <p style="text-align:right;"><a href="/payment"  class="btn btn-primary px-4 py-3">להשכרה</a>
           
-            <% var a = 2;
-            if(a ===2) { %>
+            <% if(isLogged || isLandLord) { %>
               <a href="/editApart" class="btn btn-primary px-4 py-3" style="text-align:right;">עריכה</a></p>
             <% } %>
-        </div>
+              
+          </div>
+          
       </div>
     </div>
 
+    <div dir="rtl" class="site-section">
+      <div dir="rtl" class="container">
+        <div dir="rtl" class="row">
+          <h3>
+            אטרקציות בקרבת מקום:
+            <% if(isLogged && isLandLord) { %>
+              <a href="/addAttraction" class="btn btn-primary px-4 py-3" style="text-align:right;">אטרקציה חדשה</a></p>
+            <% } %>
+          </h3>
+          <form action="/details" method="post" style="position: relative; margin: auto;">
+            <ul>
+              <% for(var key in allAtters) {  %>
+                <div class="img_wrap">
+                  <a href='/details'><input type="image" class="img_wrap" name='<%=allAtters[key][6] %>' 
+                    src='<%=allAtters[key][3]%>' width="250" height="150" /></a>
+                  <div class="imgText"> <h4><%=allAtters[key][6]%></h4>
+                    <h5>לפני הנחה: <%=allAtters[key][4]%> ₪</h5>
+                    <h5>אחרי הנחה: <%=allAtters[key][5]%> ₪</h5>
 
+                  </div>
+                </div>
+              <% } %>
+            </ul>
+            
+          </form>
+        </div>
+      </div>
+    </div>
   <footer class="site-footer">         
             <div class="row pt-5 mt-5 text-center">
               <div class="col-md-12">
