@@ -8,7 +8,7 @@ const DB_REQ = require('firebase');
 
 
 module.exports = class Apartment {
-  constructor(apartmentID = 0, address = null, city = null, description = null,
+  constructor(apartmentID = null, address = null, city = null, description = null,
     imagePath = null, isRent = false, numRoom = 0, ownerID = 0, pricePerMonth = 0,
     squereMeter = 0, startDate = null) {
     this.apartmentID = apartmentID;
@@ -57,6 +57,27 @@ module.exports = class Apartment {
     return object;
   }
 
+  async getApartNewID() {
+    // Initialize Cloud Firestore through Firebase
+    if (DB_REQ.apps.length === 0) {
+      DB_REQ.initializeApp({
+        apiKey: 'AIzaSyAmHD6wCC5S0k4m_YRpByMBPxSKr8xMhec',
+        authDomain: 'samiroomdb.firebaseio.com',
+        projectId: 'samiroomdb',
+      });
+    }
+
+    // Example: get data from firestore database
+    const db = DB_REQ.firestore();
+    const object = db.collection('Apartments').get().then((doc) => {
+      // get number of rows in the collection
+      const n = doc.size;
+      // add new row
+      return Promise.resolve(n + 1);
+    });
+    return object;
+  }
+
   async writeApartToDB() {
     // Initialize Cloud Firestore through Firebase
     if (DB_REQ.apps.length === 0) {
@@ -77,16 +98,16 @@ module.exports = class Apartment {
         apartmentID: this.apartmentID,
         address: this.address,
         city: this.city,
-        landlordID: this.landlordID,
         description: this.description,
         imagePath: this.imagePath,
         isRent: this.isRent,
         numRoom: this.numRoom,
-        ownerID: this.pricePerMonth,
+        ownerID: this.ownerID,
         pricePerMonth: this.pricePerMonth,
         squereMeter: this.squereMeter,
         startDate: this.startDate,
       });
+      console.log(`apart0${n + 1}`);
     });
   }
 

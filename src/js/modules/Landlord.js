@@ -143,7 +143,7 @@ module.exports = class Landlord {
     return somePromise2;
   }
 
-  getLandlordAparts(ownerID) {
+  async getLandlordAparts(ownerID) {
     // Initialize Cloud Firestore through Firebase
     if (DB_REQ.apps.length === 0) {
       DB_REQ.initializeApp({

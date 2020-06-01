@@ -63,23 +63,24 @@
       <form style="text-align:right;" action="/myApartments" method="POST">
         <div class="form-group">
           <label for="exampleFormControlInput1">:מספר זיהוי דירה </label>
-          <input type="text" style="text-align:right;" class="form-control" id="apartID" name="apart[ID]" required>
+          <input type="text" style="text-align:right;" value = '<%= newApartID%>' 
+          class="form-control" id="apartID" name="apart[ID]" readonly>
         </div>
         <div class="form-group">
           <label for="exampleFormControlInput1">:כתובת </label>
-          <input type="text" style="text-align:right;" class="form-control" id="address" name="apart[address]">
+          <input type="text" style="text-align:right;" class="form-control" id="address" name="apart[address]" required>
         </div>
         <div class="form-group">
             <label for="exampleFormControlInput1">:עיר </label>
-            <input type="text" style="text-align:right;" class="form-control" id="city" name="apart[city]">
+            <input type="text" style="text-align:right;" class="form-control" id="city" name="apart[city]" required>
         </div>
         <div class="form-group">
             <label for="exampleFormControlInput1">:תיאור </label>
-            <input type="text" style="text-align:right;" class="form-control" id="description" name="apart[desc]">
+            <input type="text" style="text-align:right;" class="form-control" id="description" name="apart[desc]" required>
         </div>
         <div class="form-group">
           <label for="exampleFormControlSelect1">: מספר חדרים</label>
-          <select dir = "rtl" class="form-control" id="roomNum" name="apart[numRoom]">
+          <select dir = "rtl" class="form-control" id="roomNum" name="apart[numRoom]" required>
             <option>1</option>
             <option>2</option>
             <option>3</option>
@@ -90,19 +91,15 @@
         <div class="form-group" dir= "rtl">
           <label for="exampleFormControlTextarea1">גודל דירה:</label>
           <textarea class="form-control" id="squereMeter" rows="1" style="width: 50px;" 
-          id="squereMeter" name="apart[squereMeter]"></textarea>
-        </div>
-        <div class="form-group">
-            <label for="exampleFormControlInput1">:תעודת זהות</label>
-            <input type="text" style="text-align:right;" class="form-control" id="ownerID" name="apart[ownerID]">
+          id="squereMeter" name="apart[squereMeter]" required></textarea>
         </div>
         <div class="form-group">
             <label for="exampleFormControlInput1">:שכר דירה</label>
-            <input type="text" style="text-align:right;" class="form-control" id="payPerMonth" name="apart[payPerMonth]">
+            <input type="text" style="text-align:right;" class="form-control" id="payPerMonth" name="apart[payPerMonth]" required>
         </div>
         <div class="form-group">
             <label for="exampleFormControlInput1">:תאריך כניסה</label>
-            <input type="date" style="text-align:right;" class="form-control" id="startDate" name="apart[startDate]">
+            <input type="date" style="text-align:right;" class="form-control" id="startDate" name="apart[startDate]" required>
         </div>
         <br><div class="form-group">
             <label for="exampleFormControlInput1">:העלאת תמונות דירה</label>
@@ -113,15 +110,34 @@
             <input type="submit" onclick= "appandNewAtter()" class="btn btn-primary px-5 py-3" value="העלאת אטרקציה חדשה" required>  
         </div>
         <br><div class="form-group" id="attrections">
-            <ul id='attr01'>
-                
+          <ul id='attr01'>
+            <label for='exampleFormControlInput1'>:מספר זיהוי אטרקציה</label>
+            <input type='text' style='text-align:right;' name = 'attr[ID]' class='form-control' id='attrID1' required>
+            
+            <label for='exampleFormControlInput1'>:שם אטרקציה</label>
+            <input type='text' style='text-align:right;' name = 'attr[name]' class='form-control' id='attrName1' required>
+            
+            <label for='exampleFormControlInput1'>:תיאור האטרקציה</label>
+            <input type='text' style='text-align:right;'' name='attr[desc]' class='form-control' id='desc1' required>
+
+            <label for='exampleFormControlInput1'>:מחיר לפני השכרה</label>
+            <div dir = 'rtl'><textarea class='form-control' id='before1' rows='1' style='width: 100px;' \
+            name='attr[before]'' required></textarea></div> 
+        
+            <label for='exampleFormControlInput1'>:מחיר אחרי השכרה</label>
+            <div dir = 'rtl'><textarea class='form-control' id='after1' rows='1' style='width: 100px;' \
+            name='attr[after]'' required></textarea></div>
+            
+            <label for='exampleFormControlInput1'>העלאת תמונת אטרקציה</label>
+            <br><input dir = 'rtl' type='file' id='img1' name='attr[img]' accept='image/*'>
+
             </ul>
         </div></br>
         <script>
             function appandNewAtter(){
                 var attrTable = document.getElementById("attrections");
                 attrTable.innerHTML+=
-                " <ul id='attr01'>" +
+                "<ul id='attr01'>" +
                 "<label for='exampleFormControlInput1'>:מספר זיהוי אטרקציה</label>" +
                 "<input type='text' style='text-align:right;' name = 'attr[ID]' class='form-control' id='attrID1' required>" +
                 

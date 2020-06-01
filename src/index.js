@@ -148,7 +148,11 @@ APP.get('/registertion', (req, res) => {
 });
 
 APP.get('/newApart', (req, res) => {
-  res.render(`${PATH}/newApart`, { ...baseArgg });
+  const newApart = new APART();
+  newApart.getApartNewID().then((apartID) => {
+    baseArgg.newApartID = apartID;
+    res.render(`${PATH}/newApart`, { ...baseArgg });
+  });
 });
 
 APP.get('/editApart', (req, res) => {
@@ -158,49 +162,53 @@ APP.get('/editApart', (req, res) => {
 APP.post('/myApartments', (req, res) => {
   // Save attractions to db
   let attrIndex = 0;
-  const apartID = req.body.apart.ID;
+  // const apartID = req.body.apart.ID;
+  const apartID = Number(req.body.apart.ID);
   const attrName = req.body.attr.name;
   const attrID = req.body.attr.ID;
   const attrDesc = req.body.attr.desc;
   const attrBefore = req.body.attr.before;
   const attrAfter = req.body.attr.after;
   const attrImg = req.body.attr.img;
-  const apartImg = `images/Apartments/${req.body.apart.ID}`;
-
-  // only one attraction
-  if (typeof attrName === 'string') {
-    // declare attraction class
-    const attr = new ATTR(Number(apartID), Number(attrID), attrName,
-      attrDesc, `images/Attractions/${attrImg}`, attrBefore, attrAfter);
-
-    attr.writeAttrToDB();
-  } else {
-    // multiple attractions
-    for (attrIndex; attrIndex < attrName.length; attrIndex++) {
-      // declare attraction class
-      const attr = new ATTR(Number(apartID), Number(attrID[attrIndex]), attrName[attrIndex],
-        attrDesc[attrIndex], `images/Attractions/${attrImg[attrIndex]}`, attrBefore[attrIndex], attrAfter[attrIndex]);
-
-      attr.writeAttrToDB();
-    }
-  }
-
-  // Save apartment to db
-  // create new images folder to the new apartment
-  // if (!FS.existsSync(apartImg)) {
-  //   FS.mkdir();
-  //   FS.writeFile(apartImg, req.body.apart.img);
-  //   console.log('1');
-  // }
-  // declare attraction class
-  // const newApart = new ATTR(req.body.apart.ID, req.body.apart.address, req.body.apart.city,
-  //   req.body.apart.desc, apartImg);
-
-  // newApart.writeAttrToDB();
-
+  const apartImg = 'images/Apartments';
 
   // All landlord apartments in the apartments page
   landlord.getLandlordAparts(baseArgg.landID).then((landApartments) => {
+  // declare apartments class
+    console.log(baseArgg.landID);
+    const newApart = new APART(apartID, req.body.apart.address, req.body.apart.city,
+      req.body.apart.desc, apartImg, false, Number(req.body.apart.numRoom), baseArgg.landID,
+      Number(req.body.apart.payPerMonth), Number(req.body.apart.squereMeter),
+      req.body.apart.startDate);
+
+    newApart.writeApartToDB();
+
+    // only one attraction
+    if (typeof attrName === 'string') {
+    // declare attraction class
+      const attr = new ATTR(apartID, Number(attrID), attrName,
+        attrDesc, `images/Attractions/${attrImg}`, attrBefore, attrAfter);
+
+      attr.writeAttrToDB();
+    } else {
+    // multiple attractions
+      for (attrIndex; attrIndex < attrName.length; attrIndex++) {
+      // declare attraction class
+        const attr = new ATTR(apartID, Number(attrID[attrIndex]), attrName[attrIndex],
+          attrDesc[attrIndex], `images/Attractions/${attrImg[attrIndex]}`, attrBefore[attrIndex], attrAfter[attrIndex]);
+
+        attr.writeAttrToDB();
+      }
+    }
+
+    // Save apartment to db
+    // create new images folder to the new apartment
+    // if (!FS.existsSync(apartImg)) {
+    //   FS.mkdir();
+    //   FS.writeFile(apartImg, req.body.apart.img);
+    //   console.log('1');
+    // }
+
     res.render(`${PATH}/apartments`, { landApartments, ...baseArgg });
   });
 });
@@ -219,7 +227,8 @@ APP.post('/addAttraction', (req, res) => {
   const attrBefore = req.body.attr.before;
   const attrAfter = req.body.attr.after;
   const attrImg = req.body.attr.img;
-  const attr = new ATTR(Number(baseArgg.apartID), Number(attrID), attrName, attrDesc, `images/Attractions/${attrImg}`, attrBefore, attrAfter);
+  const attr = new ATTR(baseArgg.apartID, Number(attrID), attrName, attrDesc,
+    `images/Attractions/${attrImg}`, attrBefore, attrAfter);
 
   attr.writeAttrToDB();
   let apart2 = new Promise(((resolve, reject) => {}));
@@ -241,6 +250,7 @@ APP.post('/addAttraction', (req, res) => {
     pricePerMonth = doc.pricePerMonth;
     city = doc.city;
     imagePath = doc.imagePath;
+    ownerID = doc.ownerID;
     // attractions
     attractions = attr2.getAllAttrByApart(Number(id));
     attractions.then((allAtters) => {
@@ -257,6 +267,7 @@ APP.post('/addAttraction', (req, res) => {
         city,
         pricePerMonth,
         imagePath,
+        ownerID,
       });
     });
   });

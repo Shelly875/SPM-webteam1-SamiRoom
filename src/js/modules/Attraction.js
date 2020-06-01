@@ -63,6 +63,8 @@ module.exports = class Attraction {
     const object = db.collection('Attractions').get().then((doc) => {
       // get number of rows in the collection
       const n = doc.size;
+      console.log(3);
+      console.log(`attr0${n + 1}`);
       // add new row
       db.collection('Attractions').doc(`attr0${n + 1}`).set({
         apartID: this.apartID,
@@ -73,6 +75,7 @@ module.exports = class Attraction {
         priceBefore: this.priceBefore,
         priceAfter: this.priceAfter,
       });
+      console.log(4);
     });
   }
 
