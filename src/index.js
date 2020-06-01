@@ -213,7 +213,53 @@ APP.get('/myApartments', (req, res) => {
 });
 
 APP.post('/addAttraction', (req, res) => {
-  res.render(`${PATH}/details`, { ...baseArgg });
+  const attrID = req.body.attr.ID;
+  const attrDesc = req.body.attr.desc;
+  const attrName = req.body.attr.name;
+  const attrBefore = req.body.attr.before;
+  const attrAfter = req.body.attr.after;
+  const attrImg = req.body.attr.img;
+  const attr = new ATTR(Number(baseArgg.apartID), Number(attrID), attrName, attrDesc, `images/Attractions/${attrImg}`, attrBefore, attrAfter);
+
+  attr.writeAttrToDB();
+  let apart2 = new Promise(((resolve, reject) => {}));
+  const attr2 = new ATTR();
+
+  let attractions = new Promise(((resolve, reject) => {}));
+  let apartmentID; let address; let squereMeter;
+  let pricePerMonth; let startDate; let isRent; let numRoom; let description;
+  let imagePath; let ownerID; let city;
+  const id = baseArgg.apartID;
+  apart2 = apart.searchApartById(Number(id));
+  apart2.then((doc) => {
+    numRoom = doc.numRoom;
+    apartmentID = doc.apartmentID;
+    address = doc.address;
+    squereMeter = doc.squereMeter;
+    startDate = doc.startDate;
+    description = doc.description;
+    pricePerMonth = doc.pricePerMonth;
+    city = doc.city;
+    imagePath = doc.imagePath;
+    // attractions
+    attractions = attr2.getAllAttrByApart(Number(id));
+    attractions.then((allAtters) => {
+      baseArgg.allAtters = allAtters;
+      res.render(`${PATH}/apartment-detail`, {
+        ...baseArgg,
+        apartmentID,
+        address,
+        numRoom,
+        squereMeter,
+        startDate,
+        isRent,
+        description,
+        city,
+        pricePerMonth,
+        imagePath,
+      });
+    });
+  });
 });
 
 APP.get('/addAttraction', (req, res) => {
