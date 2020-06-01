@@ -241,7 +241,6 @@ APP.post('/addAttraction', (req, res) => {
     pricePerMonth = doc.pricePerMonth;
     city = doc.city;
     imagePath = doc.imagePath;
-    ownerID = doc.ownerID;
     // attractions
     attractions = attr2.getAllAttrByApart(Number(id));
     attractions.then((allAtters) => {
@@ -258,7 +257,6 @@ APP.post('/addAttraction', (req, res) => {
         city,
         pricePerMonth,
         imagePath,
-        ownerID,
       });
     });
   });
@@ -296,6 +294,7 @@ APP.post('/details', (req, res) => {
     pricePerMonth = doc.pricePerMonth;
     city = doc.city;
     imagePath = doc.imagePath;
+    ownerID = doc.ownerID;
     baseArgg.apartID = Number(id);
     // attractions
     attractions = attr.getAllAttrByApart(Number(id));
@@ -313,6 +312,7 @@ APP.post('/details', (req, res) => {
         city,
         pricePerMonth,
         imagePath,
+        ownerID,
       });
     });
   });
