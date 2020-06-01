@@ -87,7 +87,7 @@
           </ul>
           <p style="text-align:right;"><a href="/payment"  class="btn btn-primary px-4 py-3">להשכרה</a>
           
-            <% if(isLogged || isLandLord) { %>
+            <% if(isLogged && isLandLord && (ownerID === landID)) { %>
               <a href="/editApart" class="btn btn-primary px-4 py-3" style="text-align:right;">עריכה</a></p>
             <% } %>
               
@@ -101,7 +101,7 @@
         <div dir="rtl" class="row">
           <h3>
             אטרקציות בקרבת מקום:
-            <% if(isLogged && isLandLord) { %>
+            <% if(isLogged && isLandLord && (ownerID === landID)) { %>
               <a href="/addAttraction" class="btn btn-primary px-4 py-3" style="text-align:right;">אטרקציה חדשה</a></p>
             <% } %>
           </h3>
