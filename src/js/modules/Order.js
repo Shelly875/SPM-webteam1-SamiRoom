@@ -74,18 +74,4 @@ module.exports = class Order {
       });
     });
   }
-
-
-  printOrder(order) {
-    order.then((doc) => {
-      console.log('details about order: ');
-      console.log(`apartID: ${doc.apartID}`);
-      console.log(`isPaid: ${doc.isPaid}`);
-      console.log(`landlord ID: ${doc.landlordID}`);
-      console.log(`number of payments: ${doc.numPayments}`);
-      console.log(`number paid: ${doc.numPaid}`);
-      console.log(`order ID: ${doc.orderID}`);
-      console.log(`student ID: ${doc.studentID}`);
-    });
-  }
 };

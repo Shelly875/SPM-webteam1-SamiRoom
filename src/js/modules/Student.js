@@ -147,21 +147,4 @@ module.exports = class Student {
       });
     });
   }
-
-
-  printStudent(student) {
-    // student class object get Promise student function
-    student.then((doc) => {
-      console.log('details about student: ');
-      console.log(`first name: ${doc.firstname}`);
-      console.log(`last name: ${doc.lastname}`);
-      console.log(`password: ${doc.password}`);
-      console.log(`id: ${doc.id}`);
-      console.log(`student card number: ${doc.studentCardNum}`);
-      console.log(`Is Approved: ${doc.IsApproved}`);
-      console.log(`city: ${doc.city}`);
-      console.log(`email: ${doc.email}`);
-      console.log(`phone: ${doc.phone}`);
-    });
-  }
 };

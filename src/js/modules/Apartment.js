@@ -170,21 +170,4 @@ module.exports = class Apartment {
     });
     return somePromise;
   }
-
-  printApart(apart) {
-    apart.then((doc) => {
-      console.log('details about apartment: ');
-      console.log(`apartID: ${doc.apartmentID}`);
-      console.log(`city: ${doc.city}`);
-      console.log(`desc: ${doc.description}`);
-      console.log(`address: ${doc.address}`);
-      console.log(`imagPath: ${doc.imagePath}`);
-      console.log(`isRent: ${doc.isRent}`);
-      console.log(`numRooms: ${doc.numRoom}`);
-      console.log(`ownerID: ${doc.ownerID}`);
-      console.log(`pricePerMonth: ${doc.pricePerMonth}`);
-      console.log(`squere: ${doc.squereMeter}`);
-      console.log(`startDate: ${doc.startDate}`);
-    });
-  }
 };
