@@ -8,6 +8,7 @@ const DB_REQ = require('firebase');
 const APART = require('./Apartment');
 const functions = require('../../modules/functions');
 
+
 module.exports = class Landlord {
   constructor(id = 0, firstname = null, lastname = null, city = null, phone = 0, email = null,
     isPrivate = true, companyName = null, password = null, birthday = null) {
@@ -99,8 +100,8 @@ module.exports = class Landlord {
 
     // Example: get data from firestore database
     const db = DB_REQ.firestore();
-    let somePromise = new Promise(((resolve, reject) => {}));
-    let somePromise2 = new Promise(((resolve, reject) => {}));
+    let somePromise = () => new Promise(((resolve, reject) => {}));
+    let somePromise2 = () => new Promise(((resolve, reject) => {}));
     somePromise2 = db.collection('Landlord').where('ID', '==', landID).get().then((docs) => {
       if (docs.empty) {
         return Promise.resolve(false);
