@@ -233,25 +233,11 @@ APP.post('/addAttraction', (req, res) => {
     city = doc.city;
     imagePath = doc.imagePath;
     ownerID = doc.ownerID;
-    // attractions
+    // Show attractions
     attractions = attr2.getAllAttrByApart(Number(id));
-    attractions.then((allAtters) => {
-      baseArgg.allAtters = allAtters;
-      res.render(`${PATH}/apartment-detail`, {
-        ...baseArgg,
-        apartmentID,
-        address,
-        numRoom,
-        squereMeter,
-        startDate,
-        isRent,
-        description,
-        city,
-        pricePerMonth,
-        imagePath,
-        ownerID,
-      });
-    });
+    functions.showAttraction(res, PATH, baseArgg, attractions, apartmentID, address,
+      numRoom, squereMeter, startDate, isRent, description, city, pricePerMonth, imagePath,
+      ownerID);
   });
 });
 
@@ -289,25 +275,11 @@ APP.post('/details', (req, res) => {
     imagePath = doc.imagePath;
     ownerID = doc.ownerID;
     baseArgg.apartID = Number(id);
-    // attractions
+    // Show attractions
     attractions = attr.getAllAttrByApart(Number(id));
-    attractions.then((allAtters) => {
-      baseArgg.allAtters = allAtters;
-      res.render(`${PATH}/apartment-detail`, {
-        ...baseArgg,
-        apartmentID,
-        address,
-        numRoom,
-        squereMeter,
-        startDate,
-        isRent,
-        description,
-        city,
-        pricePerMonth,
-        imagePath,
-        ownerID,
-      });
-    });
+    functions.showAttraction(res, PATH, baseArgg, attractions, apartmentID, address,
+      numRoom, squereMeter, startDate, isRent, description, city, pricePerMonth, imagePath,
+      ownerID);
   });
 });
 

@@ -11,6 +11,29 @@ function getAllpartments(res, apart, baseArgg, PATH) {
   });
 }
 
+function showAttraction(res, PATH, baseArgg, attractions, apartmentID, address,
+  numRoom, squereMeter, startDate, isRent, description, city, pricePerMonth, imagePath,
+  ownerID) {
+  attractions.then((allAtters) => {
+    baseArgg.allAtters = allAtters;
+    res.render(`${PATH}/apartment-detail`, {
+      ...baseArgg,
+      apartmentID,
+      address,
+      numRoom,
+      squereMeter,
+      startDate,
+      isRent,
+      description,
+      city,
+      pricePerMonth,
+      imagePath,
+      ownerID,
+    });
+  });
+}
+
 module.exports = {
   getAllpartments,
+  showAttraction,
 };
