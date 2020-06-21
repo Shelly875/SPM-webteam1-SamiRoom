@@ -90,7 +90,7 @@ module.exports = class Apartment {
 
     // Example: get data from firestore database
     const db = DB_REQ.firestore();
-    const object = db.collection('Apartments').get().then((doc) => {
+    db.collection('Apartments').get().then((doc) => {
       // get number of rows in the collection
       const n = doc.size;
       // add new row
@@ -123,8 +123,8 @@ module.exports = class Apartment {
 
     // Example: get data from firestore database
     const db = DB_REQ.firestore();
-    let somePromise = () => new Promise(((resolve) => {}));
-    let somePromise2 = () => new Promise(((resolve) => {}));
+    let somePromise = () => new Promise(((resolve, reject) => {}));
+    let somePromise2 = () => new Promise(((resolve, reject) => {}));
     somePromise2 = db.collection('Apartments').where('apartmentID', '==', apartID).get().then((docs) => {
       docs.forEach((doc) => { somePromise = this.readApartFromDB(doc.id); });
       return somePromise;
