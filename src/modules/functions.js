@@ -1,3 +1,4 @@
+/* eslint-disable linebreak-style */
 /* eslint-disable no-param-reassign */
 /* eslint-disable linebreak-style */
 /* eslint-disable no-console */
