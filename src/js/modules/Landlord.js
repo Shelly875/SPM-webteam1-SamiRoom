@@ -179,20 +179,4 @@ module.exports = class Landlord {
     });
     return somePromise2;
   }
-
-
-  printLandlord(landlord) {
-    // student class object get Promise student function
-    landlord.then((doc) => {
-      console.log('details about landlord: ');
-      console.log(`first name: ${doc.firstname}`);
-      console.log(`last name: ${doc.lastname}`);
-      console.log(`password: ${doc.password}`);
-      console.log(`id: ${doc.id}`);
-      console.log(`companyName (if exists): ${doc.companyName}`);
-      console.log(`Is private: ${doc.isPrivate}`);
-      console.log(`email: ${doc.email}`);
-      console.log(`phone: ${doc.phone}`);
-    });
-  }
 };
