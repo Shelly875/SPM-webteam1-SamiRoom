@@ -107,7 +107,7 @@ module.exports = class Apartment {
         squereMeter: this.squereMeter,
         startDate: this.startDate,
       });
-      console.log(`apart0${n + 1}`);
+      return 1;
     });
   }
 
@@ -123,8 +123,8 @@ module.exports = class Apartment {
 
     // Example: get data from firestore database
     const db = DB_REQ.firestore();
-    let somePromise = () => new Promise(((resolve, reject) => {}));
-    let somePromise2 = () => new Promise(((resolve, reject) => {}));
+    let somePromise = () => new Promise(((resolve) => {}));
+    let somePromise2 = () => new Promise(((resolve) => {}));
     somePromise2 = db.collection('Apartments').where('apartmentID', '==', apartID).get().then((docs) => {
       docs.forEach((doc) => { somePromise = this.readApartFromDB(doc.id); });
       return somePromise;
