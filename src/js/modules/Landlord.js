@@ -6,6 +6,7 @@
 /* eslint-disable linebreak-style */
 const DB_REQ = require('firebase');
 const APART = require('./Apartment');
+const functions = require('../../modules/functions');
 
 module.exports = class Landlord {
   constructor(id = 0, firstname = null, lastname = null, city = null, phone = 0, email = null,
@@ -156,27 +157,11 @@ module.exports = class Landlord {
     const db = DB_REQ.firestore();
     const landlordAparts = {};
     const apartment = [];
-    let count = 1;
+    // const count = 1;
     const index = 0;
     let somePromise2 = new Promise(((resolve, reject) => {}));
-    somePromise2 = db.collection('Apartments').where('ownerID', '==', ownerID).get().then((docs) => {
-      docs.forEach((doc) => {
-        apartment[index] = doc.data().address;
-        apartment[index + 1] = doc.data().apartmentID;
-        apartment[index + 2] = doc.data().description;
-        apartment[index + 3] = doc.data().imagePath;
-        apartment[index + 4] = doc.data().isRent;
-        apartment[index + 5] = doc.data().numRoom;
-        apartment[index + 6] = doc.data().ownerID;
-        apartment[index + 7] = doc.data().squereMeter;
-        apartment[index + 8] = doc.data().pricePerMonth;
-        apartment[index + 9] = doc.data().city;
-        apartment[index + 10] = doc.data().startDate;
-        landlordAparts[`apart0${count}`] = apartment.slice();
-        count += 1;
-      });
-      return Promise.resolve(landlordAparts);
-    });
+    somePromise2 = functions.getApartByLandID(db, ownerID, apartment,
+      index, landlordAparts);
     return somePromise2;
   }
 };
