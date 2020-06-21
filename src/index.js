@@ -106,17 +106,8 @@ APP.post('/login', (req, res) => {
   student.confirmStudent(Number(userID), userPass).then((resultStudent) => {
     if (resultStudent === false) {
       landlord.confirmLandlord(Number(userID), userPass).then((resultLandlord) => {
-        if (resultLandlord === false) {
-          res.render(`${PATH}/login`, { ...baseArgg, resultLandlord });
-        } else {
-          landlord.searchLandlordByID(Number(userID)).then((land) => {
-            baseArgg.isLandLord = true;
-            baseArgg.isLogged = true;
-            baseArgg.landName = land.firstname;
-            baseArgg.landID = Number(userID);
-            res.render(`${PATH}/`, { ...baseArgg });
-          });
-        }
+        functions.checkCompPassID(resultLandlord, res,
+          PATH, baseArgg, landlord, userID);
       });
     } else {
       student.searchStudentByID(Number(userID)).then((stud) => {

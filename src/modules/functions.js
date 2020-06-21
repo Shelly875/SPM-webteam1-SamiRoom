@@ -61,8 +61,24 @@ async function getApartByLandID(db, ownerID, apartment,
   return somePromise2;
 }
 
+function checkCompPassID(resultLandlord, res,
+  PATH, baseArgg, landlord, userID) {
+  if (resultLandlord === false) {
+    res.render(`${PATH}/login`, { ...baseArgg, resultLandlord });
+  } else {
+    landlord.searchLandlordByID(Number(userID)).then((land) => {
+      baseArgg.isLandLord = true;
+      baseArgg.isLogged = true;
+      baseArgg.landName = land.firstname;
+      baseArgg.landID = Number(userID);
+      res.render(`${PATH}/`, { ...baseArgg });
+    });
+  }
+}
+
 module.exports = {
   getAllpartments,
   showAttraction,
   getApartByLandID,
+  checkCompPassID,
 };
