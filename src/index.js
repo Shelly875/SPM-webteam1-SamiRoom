@@ -16,7 +16,7 @@ const ORDER = require('./js/modules/Order');
 const LAND = require('./js/modules/Landlord');
 const APART = require('./js/modules/Apartment');
 const ATTR = require('./js/modules/Attraction');
-const auth = require('./modules/auth');
+const functions = require('./modules/functions');
 
 // const apartValidation = require('./js/apartValidation');
 
@@ -48,11 +48,7 @@ const isLogged = false;
 const baseArgg = { isLogged, isLandLord: false, isStudent: false };
 
 APP.get('/', (req, res) => {
-  // All apartments in the main page
-  apart.getAllApart().then((apartments) => {
-    baseArgg.apartments = apartments;
-    res.render(`${PATH}/`, { ...baseArgg });
-  });
+  functions.getAllpartments(res, apart, baseArgg, PATH);
 });
 
 APP.post('/', (req, res) => {
@@ -69,10 +65,7 @@ APP.post('/', (req, res) => {
     baseArgg.studentID = Number(studentID);
     newStudent.writeStudentToDB();
     // All apartments in the main page
-    apart.getAllApart().then((apartments) => {
-      baseArgg.apartments = apartments;
-      res.render(`${PATH}/`, { ...baseArgg });
-    });
+    functions.getAllpartments(res, apart, baseArgg, PATH);
   } else {
     const newLand = new LAND(req.body.user.regid,
       req.body.user.fname, req.body.user.lname, req.body.user.city,
@@ -86,10 +79,7 @@ APP.post('/', (req, res) => {
     baseArgg.landID = Number(landID);
     newLand.writeLandlordToDB();
     // All apartments in the main page
-    apart.getAllApart().then((apartments) => {
-      baseArgg.apartments = apartments;
-      res.render(`${PATH}/`, { ...baseArgg });
-    });
+    functions.getAllpartments(res, apart, baseArgg, PATH);
   }
 });
 
@@ -200,14 +190,6 @@ APP.post('/myApartments', (req, res) => {
         attr.writeAttrToDB();
       }
     }
-
-    // Save apartment to db
-    // create new images folder to the new apartment
-    // if (!FS.existsSync(apartImg)) {
-    //   FS.mkdir();
-    //   FS.writeFile(apartImg, req.body.apart.img);
-    //   console.log('1');
-    // }
 
     res.render(`${PATH}/apartments`, { landApartments, ...baseArgg });
   });
